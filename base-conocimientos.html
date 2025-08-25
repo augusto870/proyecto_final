@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- =============================== -->
+    <!--  Configuración básica del sitio -->
+    <!--  Hecho por estudiante (demo)    -->
+    <!-- =============================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Base de Conocimientos de ACE Ingeniería & Conectividad - Manuales, guías y soluciones técnicas">
+    <title>Base de Conocimientos - ACE Ingeniería & Conectividad</title>
+
+    <!-- Conexión con el CSS (hoja de estilos principal) -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Librería de iconos para redes sociales (CDN) -->
+    <!-- Nota: si no tenés internet, puede que no carguen los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ============ CABECERA (HEADER) ============ -->
+    <!-- Contiene el logo y el menú de navegación -->
+    <header class="header">
+        <div class="contenedor header__contenido">
+            <a href="index.html" class="logo" aria-label="Ir al inicio">
+                <div class="logo__contenido">
+                    <div class="logo__icono">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="logo__texto">
+                        <span class="logo__titulo">ACE</span>
+                        <span class="logo__subtitulo">Ingeniería & Conectividad</span>
+                    </div>
+                </div>
+            </a>
+            <nav class="nav" aria-label="Navegación principal">
+                <ul class="nav__lista">
+                    <li><a class="nav__link" href="index.html">Inicio</a></li>
+                    <li><a class="nav__link" href="nosotros.html">Nosotros</a></li>
+                    <li><a class="nav__link" href="servicios.html">Servicios</a></li>
+                    <li><a class="nav__link" href="proyectos.html">Proyectos</a></li>
+                    <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+                    <li><a class="nav__link" href="soporte.html">Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ BASE DE CONOCIMIENTOS ============ -->
+    <section class="seccion">
+        <div class="contenedor">
+            <h1>Base de Conocimientos</h1>
+            <p class="intro">Encuentra soluciones rápidas a problemas comunes, manuales de usuario y guías técnicas para optimizar tus sistemas.</p>
+            
+            <!-- Barra de búsqueda -->
+            <div class="busqueda__contenedor">
+                <div class="busqueda__input">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Buscar en la base de conocimientos..." id="busqueda-input">
+                </div>
+            </div>
+
+            <!-- Categorías principales -->
+            <div class="categorias__grid">
+                <div class="categoria__card">
+                    <div class="categoria__icono">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Conectividad</h3>
+                    <p>Soluciones para problemas de internet y WiFi</p>
+                                         <ul class="categoria__lista">
+                         <li><a href="https://www.howtogeek.com/233717/how-to-access-your-wi-fi-routers-settings/" target="_blank">Configuración de routers</a></li>
+                         <li><a href="https://www.speedtest.net/" target="_blank">Test de velocidad</a></li>
+                         <li><a href="https://www.lifewire.com/fix-internet-connection-problems-2624562" target="_blank">Problemas de conexión</a></li>
+                     </ul>
+                </div>
+                
+                <div class="categoria__card">
+                    <div class="categoria__icono">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Redes</h3>
+                    <p>Guías de configuración y mantenimiento</p>
+                                         <ul class="categoria__lista">
+                         <li><a href="https://www.howtogeek.com/190014/virtual-lan-vlan-tutorial/" target="_blank">Configuración de switches</a></li>
+                         <li><a href="https://www.lifewire.com/vlan-tutorial-817375" target="_blank">VLANs y segmentación</a></li>
+                         <li><a href="https://www.wireshark.org/" target="_blank">Monitoreo de red</a></li>
+                     </ul>
+                </div>
+                
+                <div class="categoria__card">
+                    <div class="categoria__icono">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Seguridad</h3>
+                    <p>Protección y buenas prácticas</p>
+                                         <ul class="categoria__lista">
+                         <li><a href="https://www.pfsense.org/" target="_blank">Configuración de firewall</a></li>
+                         <li><a href="https://nvd.nist.gov/vuln" target="_blank">Vulnerabilidades de seguridad</a></li>
+                         <li><a href="https://www.veeam.com/backup-replication-software.html" target="_blank">Backup y recuperación</a></li>
+                     </ul>
+                </div>
+                
+                <div class="categoria__card">
+                    <div class="categoria__icono">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Mantenimiento</h3>
+                    <p>Rutinas y procedimientos preventivos</p>
+                                         <ul class="categoria__lista">
+                         <li><a href="https://www.pcworld.com/article/2984717/how-to-clean-your-computer.html" target="_blank">Limpieza de equipos</a></li>
+                         <li><a href="https://www.howtogeek.com/125923/7-ways-to-free-up-hard-disk-space-on-windows/" target="_blank">Verificación de sistemas</a></li>
+                         <li><a href="https://www.techrepublic.com/article/10-step-maintenance-checklist-for-it-pros/" target="_blank">Checklist de mantenimiento</a></li>
+                     </ul>
+                </div>
+            </div>
+
+            <!-- Artículos destacados -->
+            <div class="articulos__seccion">
+                <h2>Artículos Destacados</h2>
+                <div class="articulos__grid">
+                    <article class="articulo__card">
+                        <div class="articulo__imagen">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <div class="articulo__contenido">
+                            <h3>Guía de Configuración WiFi Empresarial</h3>
+                            <p>Aprende a configurar una red WiFi segura y eficiente para tu empresa.</p>
+                            <div class="articulo__meta">
+                                <span><i class="fas fa-clock"></i> 5 min de lectura</span>
+                                <span><i class="fas fa-user"></i> Nivel: Intermedio</span>
+                            </div>
+                                                         <a href="https://www.howtogeek.com/233717/how-to-access-your-wi-fi-routers-settings/" target="_blank" class="btn btn--outline">Leer Guía</a>
+                        </div>
+                    </article>
+                    
+                    <article class="articulo__card">
+                        <div class="articulo__imagen">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="articulo__contenido">
+                            <h3>Checklist de Seguridad Mensual</h3>
+                            <p>Lista de verificación para mantener tu infraestructura segura.</p>
+                            <div class="articulo__meta">
+                                <span><i class="fas fa-clock"></i> 3 min de lectura</span>
+                                <span><i class="fas fa-user"></i> Nivel: Básico</span>
+                            </div>
+                                                         <a href="https://www.sans.org/security-awareness-training/ouch-newsletter/" target="_blank" class="btn btn--outline">Ver Checklist</a>
+                        </div>
+                    </article>
+                    
+                    <article class="articulo__card">
+                        <div class="articulo__imagen">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="articulo__contenido">
+                            <h3>Configuración de VLANs</h3>
+                            <p>Tutorial paso a paso para segmentar tu red de manera eficiente.</p>
+                            <div class="articulo__meta">
+                                <span><i class="fas fa-clock"></i> 8 min de lectura</span>
+                                <span><i class="fas fa-user"></i> Nivel: Avanzado</span>
+                            </div>
+                                                         <a href="https://www.howtogeek.com/190014/virtual-lan-vlan-tutorial/" target="_blank" class="btn btn--outline">Ver Tutorial</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            <!-- Herramientas y Recursos -->
+            <div class="herramientas__seccion">
+                <h2>Herramientas y Recursos Prácticos</h2>
+                <div class="herramientas__grid">
+                    <div class="herramienta__card">
+                        <div class="herramienta__icono">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h3>Diagnóstico de Red</h3>
+                        <p>Herramientas para analizar y diagnosticar problemas de conectividad</p>
+                                                 <div class="herramienta__enlaces">
+                             <a href="https://www.speedtest.net/" target="_blank" class="herramienta__link">
+                                 <i class="fas fa-external-link-alt"></i> Speedtest
+                             </a>
+                             <a href="https://www.whatismyipaddress.com/" target="_blank" class="herramienta__link">
+                                 <i class="fas fa-external-link-alt"></i> IP Checker
+                             </a>
+                             <a href="https://www.yougetsignal.com/tools/open-ports/" target="_blank" class="herramienta__link">
+                                 <i class="fas fa-external-link-alt"></i> Port Checker
+                             </a>
+                         </div>
+                    </div>
+                    
+                    <div class="herramienta__card">
+                        <div class="herramienta__icono">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Seguridad y Monitoreo</h3>
+                        <p>Recursos para proteger y monitorear tu infraestructura</p>
+                        <div class="herramienta__enlaces">
+                            <a href="https://www.wireshark.org/" target="_blank" class="herramienta__link">
+                                <i class="fas fa-external-link-alt"></i> Wireshark
+                            </a>
+                            <a href="https://nmap.org/" target="_blank" class="herramienta__link">
+                                <i class="fas fa-external-link-alt"></i> Nmap
+                            </a>
+                                                         <a href="https://www.openssh.com/" target="_blank" class="herramienta__link">
+                                 <i class="fas fa-external-link-alt"></i> OpenSSH
+                             </a>
+                             <a href="https://www.advanced-ip-scanner.com/" target="_blank" class="herramienta__link">
+                                 <i class="fas fa-external-link-alt"></i> Advanced IP Scanner
+                             </a>
+                        </div>
+                    </div>
+                    
+                    <div class="herramienta__card">
+                        <div class="herramienta__icono">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h3>Documentación Técnica</h3>
+                        <p>Manuales y guías oficiales de fabricantes</p>
+                                                 <div class="herramienta__enlaces">
+                             <a href="https://www.howtogeek.com/" target="_blank" class="herramienta__link">
+                                 <i class="fas fa-external-link-alt"></i> How-To Geek
+                             </a>
+                             <a href="https://docs.microsoft.com/en-us/" target="_blank" class="herramienta__link">
+                                 <i class="fas fa-external-link-alt"></i> Microsoft Docs
+                             </a>
+                             <a href="https://www.lifewire.com/" target="_blank" class="herramienta__link">
+                                 <i class="fas fa-external-link-alt"></i> Lifewire Tech
+                             </a>
+                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ -->
+            <div class="faq__seccion">
+                <h2>Preguntas Frecuentes</h2>
+                <div class="faq__lista">
+                    <div class="faq__item">
+                        <div class="faq__pregunta">
+                            <h3>¿Por qué mi WiFi es lento?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq__respuesta">
+                            <p>Las causas más comunes son: interferencias, configuración incorrecta del router, o demasiados dispositivos conectados. Te recomendamos revisar la posición del router y verificar la configuración de canales.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq__item">
+                        <div class="faq__pregunta">
+                            <h3>¿Con qué frecuencia debo hacer mantenimiento?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq__respuesta">
+                            <p>Para equipos críticos, recomendamos mantenimiento mensual. Para equipos de uso general, cada 3-6 meses es suficiente. Siempre después de cambios importantes en la infraestructura.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq__item">
+                        <div class="faq__pregunta">
+                            <h3>¿Cómo configuro un firewall básico?</h3>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq__respuesta">
+                            <p>Comienza bloqueando todo el tráfico entrante y luego abre solo los puertos necesarios. Configura reglas para servicios web (puerto 80/443), email (puerto 25/587) y acceso remoto (puerto 22/3389).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA -->
+            <div class="conocimientos__cta">
+                <h2>¿No encontraste lo que buscabas?</h2>
+                <p>Nuestro equipo técnico está disponible para ayudarte con consultas específicas</p>
+                <div class="cta__botones">
+                    <a href="contacto.html" class="btn">Contactar Soporte</a>
+                    <a href="soporte.html" class="btn btn--outline">Ver Más Opciones</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PIE DE PÁGINA (FOOTER) ============ -->
+    <footer class="footer">
+        <div class="contenedor footer__contenido">
+            <p>&copy; 2025 ACE Ingeniería & Conectividad</p>
+            <div class="redes">
+                <!-- Enlaces de ejemplo; reemplazar por los reales -->
+                <a class="redes__link" href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a class="redes__link" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <small class="footer__legal">Este sitio es un trabajo práctico de Augusto Acosta.</small>
+    </footer>
+
+    <!-- Conexión con el JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

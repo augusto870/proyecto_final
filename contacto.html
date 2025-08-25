@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- =============================== -->
+    <!--  Configuración básica del sitio -->
+    <!--  Hecho por estudiante (demo)    -->
+    <!-- =============================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contacta con ACE Ingeniería & Conectividad - Solicita presupuesto o consulta sobre nuestros servicios">
+    <title>Contacto - ACE Ingeniería & Conectividad</title>
+
+    <!-- Conexión con el CSS (hoja de estilos principal) -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Librería de iconos para redes sociales (CDN) -->
+    <!-- Nota: si no tenés internet, puede que no carguen los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ============ CABECERA (HEADER) ============ -->
+    <!-- Contiene el logo y el menú de navegación -->
+    <header class="header">
+        <div class="contenedor header__contenido">
+            <a href="index.html" class="logo" aria-label="Ir al inicio">
+                <div class="logo__contenido">
+                    <div class="logo__icono">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="logo__texto">
+                        <span class="logo__titulo">ACE</span>
+                        <span class="logo__subtitulo">Ingeniería & Conectividad</span>
+                    </div>
+                </div>
+            </a>
+            <nav class="nav" aria-label="Navegación principal">
+                <ul class="nav__lista">
+                    <li><a class="nav__link" href="index.html">Inicio</a></li>
+                    <li><a class="nav__link" href="nosotros.html">Nosotros</a></li>
+                    <li><a class="nav__link" href="servicios.html">Servicios</a></li>
+                    <li><a class="nav__link" href="proyectos.html">Proyectos</a></li>
+                    <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+                    <li><a class="nav__link" href="soporte.html">Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="seccion">
+        <div class="contenedor">
+            <h1>Contacto</h1>
+            <p class="intro">Estamos aquí para ayudarte. ¡Contanos sobre tu proyecto y te daremos una solución personalizada!</p>
+            
+            <div class="contacto__contenido">
+                <div class="contacto__info">
+                    <h2>Información de Contacto</h2>
+                    
+                    <div class="contacto__item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Teléfono</h3>
+                            <p>+54 11 1234-5678</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contacto__item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>info@aceingenieria.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contacto__item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Dirección</h3>
+                            <p>Av. Principal 123, Ciudad Autónoma de Buenos Aires</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contacto__item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Horarios</h3>
+                            <p>Lun - Vie: 9:00 - 18:00<br>Sáb: 9:00 - 13:00</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contacto__redes">
+                        <h3>Síguenos en Redes</h3>
+                        <div class="redes__iconos">
+                            <a href="#" class="redes__icono"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="redes__icono"><i class="fab fa-instagram"></i></a>
+                            <a href="#" class="redes__icono"><i class="fab fa-linkedin"></i></a>
+                            <a href="#" class="redes__icono"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contacto__formulario">
+                    <h2>Envíanos un Mensaje</h2>
+                    
+                    <!-- Formulario con validación básica en JS -->
+                    <!-- action apunta a un PHP muy simple de ejemplo -->
+                    <form action="php/enviar.php" method="POST" id="form-contacto" class="form">
+                        <!-- name y required ayudan a la validación y al backend -->
+                        <label class="form__label">
+                            <span>Nombre *</span>
+                            <input class="form__input" type="text" name="nombre" placeholder="Tu nombre completo" required>
+                        </label>
+
+                        <label class="form__label">
+                            <span>Email *</span>
+                            <input class="form__input" type="email" name="email" placeholder="tu@correo.com" required>
+                        </label>
+
+                        <label class="form__label">
+                            <span>Teléfono</span>
+                            <input class="form__input" type="tel" name="telefono" placeholder="+54 11 1234-5678">
+                        </label>
+
+                        <label class="form__label">
+                            <span>Servicio de interés</span>
+                            <select class="form__input" name="servicio">
+                                <option value="">Selecciona un servicio</option>
+                                <option value="conectividad">Conectividad a Internet</option>
+                                <option value="redes">Instalación de Redes</option>
+                                <option value="ingenieria">Soluciones de Ingeniería</option>
+                                <option value="mantenimiento">Mantenimiento y Soporte</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                        </label>
+
+                        <label class="form__label form__label--full">
+                            <span>Mensaje *</span>
+                            <textarea class="form__textarea" name="mensaje" placeholder="Contanos en qué te podemos ayudar..." required></textarea>
+                        </label>
+
+                        <button class="btn" type="submit">Enviar Mensaje</button>
+
+                        <!-- Mensaje que se muestra desde JS (feedback simple) -->
+                        <p id="msj-estado" class="form__estado" aria-live="polite"></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PIE DE PÁGINA (FOOTER) ============ -->
+    <footer class="footer">
+        <div class="contenedor footer__contenido">
+            <p>&copy; 2025 ACE Ingeniería & Conectividad</p>
+            <div class="redes">
+                <!-- Enlaces de ejemplo; reemplazar por los reales -->
+                <a class="redes__link" href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a class="redes__link" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <small class="footer__legal">Este sitio es un trabajo práctico de Augusto Acosta.</small>
+    </footer>
+
+    <!-- Conexión con el JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

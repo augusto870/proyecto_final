@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- =============================== -->
+    <!--  Configuración básica del sitio -->
+    <!--  Hecho por estudiante (demo)    -->
+    <!-- =============================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Soporte técnico de ACE Ingeniería & Conectividad - Asistencia profesional para tus sistemas">
+    <title>Soporte - ACE Ingeniería & Conectividad</title>
+
+    <!-- Conexión con el CSS (hoja de estilos principal) -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Librería de iconos para redes sociales (CDN) -->
+    <!-- Nota: si no tenés internet, puede que no carguen los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ============ CABECERA (HEADER) ============ -->
+    <!-- Contiene el logo y el menú de navegación -->
+    <header class="header">
+        <div class="contenedor header__contenido">
+            <a href="index.html" class="logo" aria-label="Ir al inicio">
+                <div class="logo__contenido">
+                    <div class="logo__icono">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="logo__texto">
+                        <span class="logo__titulo">ACE</span>
+                        <span class="logo__subtitulo">Ingeniería & Conectividad</span>
+                    </div>
+                </div>
+            </a>
+            <nav class="nav" aria-label="Navegación principal">
+                <ul class="nav__lista">
+                    <li><a class="nav__link" href="index.html">Inicio</a></li>
+                    <li><a class="nav__link" href="nosotros.html">Nosotros</a></li>
+                    <li><a class="nav__link" href="servicios.html">Servicios</a></li>
+                    <li><a class="nav__link" href="proyectos.html">Proyectos</a></li>
+                    <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+                    <li><a class="nav__link" href="soporte.html">Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ SOPORTE ============ -->
+    <section class="seccion">
+        <div class="contenedor">
+            <h1>Soporte Técnico</h1>
+            <p class="intro">Asistencia profesional cuando más la necesitas. Nuestro equipo de soporte está disponible para resolver cualquier problema técnico.</p>
+            
+            <div class="soporte__contenido">
+                <div class="soporte__card">
+                    <div class="soporte__icono">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte Remoto</h3>
+                    <p>Resolución de problemas técnicos a distancia con acceso seguro a tus sistemas.</p>
+                    <ul class="soporte__lista">
+                        <li>Diagnóstico remoto</li>
+                        <li>Configuración de software</li>
+                        <li>Resolución de incidencias</li>
+                        <li>Asesoramiento técnico</li>
+                    </ul>
+                    <a href="contacto.html" class="btn btn--outline">Solicitar Soporte</a>
+                </div>
+                
+                <div class="soporte__card">
+                    <div class="soporte__icono">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>Soporte en Sitio</h3>
+                    <p>Visita técnica especializada para problemas que requieren intervención física.</p>
+                    <ul class="soporte__lista">
+                        <li>Instalación de hardware</li>
+                        <li>Mantenimiento preventivo</li>
+                        <li>Reparaciones urgentes</li>
+                        <li>Configuración de equipos</li>
+                    </ul>
+                    <a href="contacto.html" class="btn btn--outline">Agendar Visita</a>
+                </div>
+                
+                <div class="soporte__card">
+                    <div class="soporte__icono">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Base de Conocimientos</h3>
+                    <p>Documentación técnica y guías de usuario para resolver problemas comunes.</p>
+                    <ul class="soporte__lista">
+                        <li>Manuales de usuario</li>
+                        <li>Guías de configuración</li>
+                        <li>FAQ y troubleshooting</li>
+                        <li>Videos tutoriales</li>
+                    </ul>
+                    <a href="base-conocimientos.html" class="btn btn--outline">Acceder</a>
+                </div>
+            </div>
+            
+            <div class="soporte__cta">
+                <h2>¿Necesitas ayuda urgente?</h2>
+                <p>Nuestro equipo de soporte está disponible para asistirte de inmediato</p>
+                <div class="soporte__botones">
+                    <a href="tel:+541112345678" class="btn">
+                        <i class="fas fa-phone"></i> Llamar Ahora
+                    </a>
+                    <a href="https://wa.me/549000000000" class="btn btn--whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+            
+            <div class="soporte__horarios">
+                <h2>Horarios de Soporte</h2>
+                <div class="horarios__grid">
+                    <div class="horario__item">
+                        <h3>Soporte Básico</h3>
+                        <p><strong>Lunes a Viernes:</strong> 9:00 - 18:00</p>
+                        <p><strong>Sábados:</strong> 9:00 - 13:00</p>
+                    </div>
+                    <div class="horario__item">
+                        <h3>Soporte Urgente</h3>
+                        <p><strong>24/7</strong> para clientes premium</p>
+                        <p>Respuesta en menos de 2 horas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PIE DE PÁGINA (FOOTER) ============ -->
+    <footer class="footer">
+        <div class="contenedor footer__contenido">
+            <p>&copy; 2025 ACE Ingeniería & Conectividad</p>
+            <div class="redes">
+                <!-- Enlaces de ejemplo; reemplazar por los reales -->
+                <a class="redes__link" href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a class="redes__link" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <small class="footer__legal">Este sitio es un trabajo práctico de Augusto Acosta.</small>
+    </footer>
+
+    <!-- Conexión con el JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

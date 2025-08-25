@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- =============================== -->
+    <!--  Configuración básica del sitio -->
+    <!--  Hecho por estudiante (demo)    -->
+    <!-- =============================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Servicios de conectividad, redes e ingeniería de ACE Ingeniería & Conectividad">
+    <title>Servicios - ACE Ingeniería & Conectividad</title>
+
+    <!-- Conexión con el CSS (hoja de estilos principal) -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Librería de iconos para redes sociales (CDN) -->
+    <!-- Nota: si no tenés internet, puede que no carguen los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ============ CABECERA (HEADER) ============ -->
+    <!-- Contiene el logo y el menú de navegación -->
+    <header class="header">
+        <div class="contenedor header__contenido">
+            <a href="index.html" class="logo" aria-label="Ir al inicio">
+                <div class="logo__contenido">
+                    <div class="logo__icono">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="logo__texto">
+                        <span class="logo__titulo">ACE</span>
+                        <span class="logo__subtitulo">Ingeniería & Conectividad</span>
+                    </div>
+                </div>
+            </a>
+            <nav class="nav" aria-label="Navegación principal">
+                <ul class="nav__lista">
+                    <li><a class="nav__link" href="index.html">Inicio</a></li>
+                    <li><a class="nav__link" href="nosotros.html">Nosotros</a></li>
+                    <li><a class="nav__link" href="servicios.html">Servicios</a></li>
+                    <li><a class="nav__link" href="proyectos.html">Proyectos</a></li>
+                    <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+                    <li><a class="nav__link" href="soporte.html">Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ SERVICIOS ============ -->
+    <section class="seccion">
+        <div class="contenedor">
+            <h1>Nuestros Servicios</h1>
+            <p class="intro">Soluciones integrales para todas tus necesidades tecnológicas. Ofrecemos servicios profesionales con respaldo técnico especializado.</p>
+            
+            <div class="servicios__grid">
+                <div class="servicio__card">
+                    <div class="servicio__icono">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <h3>Conectividad a Internet</h3>
+                    <p>Instalación y configuración de conexiones de alta velocidad para empresas y hogares.</p>
+                    <ul class="servicio__lista">
+                        <li>Fibra óptica</li>
+                        <li>WiFi empresarial</li>
+                        <li>Optimización de velocidad</li>
+                        <li>Configuración de routers</li>
+                    </ul>
+                </div>
+                
+                <div class="servicio__card">
+                    <div class="servicio__icono">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <h3>Instalación de Redes</h3>
+                    <p>Diseño e implementación de infraestructuras de red robustas y escalables.</p>
+                    <ul class="servicio__lista">
+                        <li>Redes LAN/WAN</li>
+                        <li>Cableado estructurado</li>
+                        <li>Configuración de switches</li>
+                        <li>VLANs y segmentación</li>
+                    </ul>
+                </div>
+                
+                <div class="servicio__card">
+                    <div class="servicio__icono">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Soluciones de Ingeniería</h3>
+                    <p>Desarrollo de soluciones tecnológicas personalizadas para necesidades específicas.</p>
+                    <ul class="servicio__lista">
+                        <li>Automatización industrial</li>
+                        <li>Sistemas de control</li>
+                        <li>Integración de tecnologías</li>
+                        <li>Consultoría técnica</li>
+                    </ul>
+                </div>
+                
+                <div class="servicio__card">
+                    <div class="servicio__icono">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Mantenimiento y Soporte</h3>
+                    <p>Servicios de mantenimiento preventivo y soporte técnico especializado.</p>
+                    <ul class="servicio__lista">
+                        <li>Monitoreo 24/7</li>
+                        <li>Resolución de incidencias</li>
+                        <li>Actualizaciones de seguridad</li>
+                        <li>Soporte remoto y en sitio</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="servicios__cta">
+                <h2>¿Necesitás un servicio específico?</h2>
+                <p>Contanos qué necesitás y te daremos una solución personalizada</p>
+                <a href="contacto.html" class="btn">Solicitar Presupuesto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PIE DE PÁGINA (FOOTER) ============ -->
+    <footer class="footer">
+        <div class="contenedor footer__contenido">
+            <p>&copy; 2025 ACE Ingeniería & Conectividad</p>
+            <div class="redes">
+                <!-- Enlaces de ejemplo; reemplazar por los reales -->
+                <a class="redes__link" href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a class="redes__link" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <small class="footer__legal">Este sitio es un trabajo práctico de Augusto Acosta.</small>
+    </footer>
+
+    <!-- Conexión con el JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

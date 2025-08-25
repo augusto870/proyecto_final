@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- =============================== -->
+    <!--  Configuración básica del sitio -->
+    <!--  Hecho por estudiante (demo)    -->
+    <!-- =============================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Proyectos destacados de ACE Ingeniería & Conectividad - Casos de éxito en conectividad y redes">
+    <title>Proyectos - ACE Ingeniería & Conectividad</title>
+
+    <!-- Conexión con el CSS (hoja de estilos principal) -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Librería de iconos para redes sociales (CDN) -->
+    <!-- Nota: si no tenés internet, puede que no carguen los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- ============ CABECERA (HEADER) ============ -->
+    <!-- Contiene el logo y el menú de navegación -->
+    <header class="header">
+        <div class="contenedor header__contenido">
+            <a href="index.html" class="logo" aria-label="Ir al inicio">
+                <div class="logo__contenido">
+                    <div class="logo__icono">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="logo__texto">
+                        <span class="logo__titulo">ACE</span>
+                        <span class="logo__subtitulo">Ingeniería & Conectividad</span>
+                    </div>
+                </div>
+            </a>
+            <nav class="nav" aria-label="Navegación principal">
+                <ul class="nav__lista">
+                    <li><a class="nav__link" href="index.html">Inicio</a></li>
+                    <li><a class="nav__link" href="nosotros.html">Nosotros</a></li>
+                    <li><a class="nav__link" href="servicios.html">Servicios</a></li>
+                    <li><a class="nav__link" href="proyectos.html">Proyectos</a></li>
+                    <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+                    <li><a class="nav__link" href="soporte.html">Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ PROYECTOS ============ -->
+    <section class="seccion">
+        <div class="contenedor">
+            <h1>Proyectos Destacados</h1>
+            <p class="intro">Algunos de nuestros trabajos más importantes. Cada proyecto representa nuestro compromiso con la excelencia técnica y la satisfacción del cliente.</p>
+            
+            <div class="grid-proyectos">
+                <figure class="card-proyecto">
+                    <img src="imagenes/proyecto1.jpg" alt="Proyecto 1: instalación de red" class="img-proyecto">
+                    <figcaption>
+                        <h3>Red Corporativa Empresa ABC</h3>
+                        <p>Implementación de red de alta velocidad para empresa de 200 empleados.</p>
+                        <div class="proyecto__tags">
+                            <span class="tag">Redes</span>
+                            <span class="tag">Empresarial</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                
+                <figure class="card-proyecto">
+                    <img src="imagenes/proyecto1.jpg" alt="Proyecto 2: mejora de conectividad" class="img-proyecto">
+                    <figcaption>
+                        <h3>Smart Home Residencial</h3>
+                        <p>Sistema de automatización y conectividad para vivienda inteligente.</p>
+                        <div class="proyecto__tags">
+                            <span class="tag">IoT</span>
+                            <span class="tag">Residencial</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                
+                <figure class="card-proyecto">
+                    <img src="imagenes/proyecto1.jpg" alt="Proyecto 3: solución de ingeniería" class="img-proyecto">
+                    <figcaption>
+                        <h3>Infraestructura Hospitalaria</h3>
+                        <p>Red de datos crítica para centro médico con alta disponibilidad.</p>
+                        <div class="proyecto__tags">
+                            <span class="tag">Salud</span>
+                            <span class="tag">Crítico</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                
+                <figure class="card-proyecto">
+                    <img src="imagenes/proyecto1.jpg" alt="Proyecto 4: conectividad empresarial" class="img-proyecto">
+                    <figcaption>
+                        <h3>Conectividad Multi-Sucursal</h3>
+                        <p>Implementación de VPN y conectividad segura entre 5 sucursales.</p>
+                        <div class="proyecto__tags">
+                            <span class="tag">VPN</span>
+                            <span class="tag">Multi-sucursal</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                
+                <figure class="card-proyecto">
+                    <img src="imagenes/proyecto1.jpg" alt="Proyecto 5: sistema de monitoreo" class="img-proyecto">
+                    <figcaption>
+                        <h3>Sistema de Monitoreo Industrial</h3>
+                        <p>Implementación de sistema de control y monitoreo para planta industrial.</p>
+                        <div class="proyecto__tags">
+                            <span class="tag">Industrial</span>
+                            <span class="tag">Monitoreo</span>
+                        </div>
+                    </figcaption>
+                </figure>
+                
+                <figure class="card-proyecto">
+                    <img src="imagenes/proyecto1.jpg" alt="Proyecto 6: data center" class="img-proyecto">
+                    <figcaption>
+                        <h3>Data Center Empresarial</h3>
+                        <p>Diseño e implementación de infraestructura de centro de datos.</p>
+                        <div class="proyecto__tags">
+                            <span class="tag">Data Center</span>
+                            <span class="tag">Infraestructura</span>
+                        </div>
+                    </figcaption>
+                </figure>
+            </div>
+            
+            <div class="proyectos__cta">
+                <h2>¿Querés que trabajemos en tu proyecto?</h2>
+                <p>Contanos sobre tu idea y te daremos una solución personalizada</p>
+                <a href="contacto.html" class="btn">Consultar</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PIE DE PÁGINA (FOOTER) ============ -->
+    <footer class="footer">
+        <div class="contenedor footer__contenido">
+            <p>&copy; 2025 ACE Ingeniería & Conectividad</p>
+            <div class="redes">
+                <!-- Enlaces de ejemplo; reemplazar por los reales -->
+                <a class="redes__link" href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a class="redes__link" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <small class="footer__legal">Este sitio es un trabajo práctico de Augusto Acosta.</small>
+    </footer>
+
+    <!-- Conexión con el JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- =============================== -->
+    <!--  CONFIGURACIÓN BÁSICA DEL SITIO -->
+    <!--  - Metadatos y SEO básico       -->
+    <!--  - Enlaces a CSS y fuentes      -->
+    <!--  - Configuración responsive     -->
+    <!-- =============================== -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ACE Ingeniería & Conectividad - Soluciones de internet y redes">
+    <title>ACE Ingeniería & Conectividad</title>
+
+    <!-- Conexión con el CSS (hoja de estilos principal) -->
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <!-- Librería de iconos para redes sociales (CDN) -->
+    <!-- Nota: si no tenés internet, puede que no carguen los íconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <!-- Mejoras de accesibilidad -->
+    <meta name="theme-color" content="#0b3a70">
+    <link rel="canonical" href="https://tudominio.com/index.html">
+</head>
+<body>
+    <!-- ============ HEADER ============ -->
+    <!-- Contiene:
+         - Logo de la empresa
+         - Menú de navegación principal
+         - Versión móvil del menú -->
+    <header class="header">
+        <div class="contenedor header__contenido">
+            <a href="index.html" class="logo" aria-label="Ir al inicio">
+                <div class="logo__contenido">
+                    <div class="logo__icono">
+                        <i class="fas fa-network-wired"></i>
+                    </div>
+                    <div class="logo__texto">
+                        <span class="logo__titulo">ACE</span>
+                        <span class="logo__subtitulo">Ingeniería & Conectividad</span>
+                    </div>
+                </div>
+            </a>
+            <nav class="nav" aria-label="Navegación principal" role="navigation">
+                <ul class="nav__lista">
+                    <li><a class="nav__link" href="index.html">Inicio</a></li>
+                    <li><a class="nav__link" href="nosotros.html">Nosotros</a></li>
+                    <li><a class="nav__link" href="servicios.html">Servicios</a></li>
+                    <li><a class="nav__link" href="proyectos.html">Proyectos</a></li>
+                    <li><a class="nav__link" href="contacto.html">Contacto</a></li>
+                    <li><a class="nav__link" href="soporte.html">Soporte</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <!-- Sección principal con:
+         - Título principal
+         - Descripción corta
+         - Llamados a la acción -->
+    <section id="inicio" class="seccion hero">
+        <div class="contenedor">
+            <h1 class="hero__titulo">ACE Ingeniería & Conectividad</h1>
+            <p class="hero__bajada">Soluciones tecnológicas confiables para empresas, hogares y organismos públicos.</p>
+            <div class="hero__botones">
+                <a class="btn" href="servicios.html">Ver Servicios</a>
+                <a class="btn btn--outline" href="contacto.html">Pedí tu Presupuesto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ DESTACADOS ============ -->
+    <section class="seccion seccion--gris">
+        <div class="contenedor">
+            <h2>¿Por qué elegirnos?</h2>
+            <div class="destacados__grid">
+                <div class="destacado__card">
+                    <div class="destacado__icono">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Rápido y Eficiente</h3>
+                    <p>Implementamos soluciones en tiempo récord sin comprometer la calidad.</p>
+                </div>
+                
+                <div class="destacado__card">
+                    <div class="destacado__icono">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Seguridad Garantizada</h3>
+                    <p>Protegemos tu infraestructura con las mejores prácticas de seguridad.</p>
+                </div>
+                
+                <div class="destacado__card">
+                    <div class="destacado__icono">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Soporte 24/7</h3>
+                    <p>Estamos disponibles cuando más nos necesitas, sin excepciones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ SERVICIOS ============ -->
+    <!-- Muestra:
+         - Lista de servicios principales
+         - Iconos descriptivos
+         - Enlaces a detalles -->
+    <section class="seccion">
+        <div class="contenedor">
+            <h2>Nuestros Servicios Principales</h2>
+            <!-- Grid de servicios con iconos y enlaces a páginas detalladas -->
+            <div class="servicios__rapidos">
+                <!-- Servicio 1: Conectividad -->
+                <div class="servicio__rapido">
+                    <i class="fas fa-wifi"></i> <!-- Icono de WiFi -->
+                    <h3>Conectividad</h3>
+                    <p>Internet de alta velocidad para tu empresa o hogar</p>
+                    <a href="servicios.html" class="link__mas">Ver más →</a> <!-- Enlace a página detallada -->
+                </div>
+                
+                <!-- Servicio 2: Redes -->
+                <div class="servicio__rapido">
+                    <i class="fas fa-network-wired"></i> <!-- Icono de red cableada -->
+                    <h3>Redes</h3>
+                    <p>Infraestructura de red robusta y escalable</p>
+                    <a href="servicios.html" class="link__mas">Ver más →</a>
+                </div>
+                
+                <!-- Servicio 3: Ingeniería -->
+                <div class="servicio__rapido">
+                    <i class="fas fa-cogs"></i> <!-- Icono de engranajes -->
+                    <h3>Ingeniería</h3>
+                    <p>Soluciones tecnológicas personalizadas</p>
+                    <a href="servicios.html" class="link__mas">Ver más →</a>
+                </div>
+                
+                <!-- Servicio 4: Soporte -->
+                <div class="servicio__rapido">
+                    <i class="fas fa-tools"></i> <!-- Icono de herramientas -->
+                    <h3>Soporte</h3>
+                    <p>Mantenimiento y asistencia técnica</p>
+                    <a href="soporte.html" class="link__mas">Ver más →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FORMULARIO ============ -->
+    <!-- Formulario de contacto con:
+         - Validación de campos
+         - Mensajes de error
+         - Envío asíncrono -->
+    <section class="seccion seccion--azul">
+        <div class="contenedor">
+            <!-- Encabezado del formulario con explicación clara -->
+            <div class="presupuesto__header">
+                <h2>¿Necesitas un Presupuesto Personalizado?</h2>
+                <p>Cuéntanos sobre tu proyecto y te enviaremos una propuesta adaptada a tus necesidades</p>
+            </div>
+            
+            <!-- Formulario de presupuesto con validación y envío AJAX -->
+            <!-- El atributo 'novalidate' desactiva la validación nativa del navegador para usar la nuestra -->
+            <form class="formulario__presupuesto" id="formPresupuesto" novalidate>
+                <!-- Primera fila: Información personal básica -->
+                <!-- Usamos grid para organizar campos en 2 columnas -->
+                <div class="formulario__fila">
+                    <!-- Campo: Nombre completo (obligatorio) -->
+                    <div class="formulario__grupo">
+                        <label for="nombre" class="formulario__label">
+                            <i class="fas fa-user"></i> <!-- Icono para mejor UX -->
+                            Nombre completo *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="nombre" 
+                            name="nombre" 
+                            class="formulario__input" 
+                            placeholder="Tu nombre completo"
+                            required <!-- Campo obligatorio -->
+                            maxlength="100" <!-- Límite de caracteres -->
+                        >
+                        <!-- Contenedor para mensajes de error -->
+                        <span class="formulario__error" id="error-nombre"></span>
+                    </div>
+                    
+                    <!-- Campo: Email (obligatorio) -->
+                    <div class="formulario__grupo">
+                        <label for="email" class="formulario__label">
+                            <i class="fas fa-envelope"></i>
+                            Email *
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="formulario__input" 
+                            placeholder="tu@email.com"
+                            required
+                        >
+                        <span class="formulario__error" id="error-email"></span>
+                    </div>
+                </div>
+
+                <!-- Segunda fila: Información de contacto y empresa -->
+                <div class="formulario__fila">
+                    <!-- Campo: Teléfono (obligatorio) -->
+                    <div class="formulario__grupo">
+                        <label for="telefono" class="formulario__label">
+                            <i class="fas fa-phone"></i>
+                            Teléfono *
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="telefono" 
+                            name="telefono" 
+                            class="formulario__input" 
+                            placeholder="+54 11 1234-5678"
+                            required
+                            pattern="[\d\s\-\(\)\+]+" <!-- Patrón para validar formato de teléfono -->
+                        >
+                        <span class="formulario__error" id="error-telefono"></span>
+                    </div>
+                    
+                    <!-- Campo: Empresa (opcional) -->
+                    <div class="formulario__grupo">
+                        <label for="empresa" class="formulario__label">
+                            <i class="fas fa-building"></i>
+                            Empresa (opcional)
+                        </label>
+                        <input 
+                            type="text" 
+                            id="empresa" 
+                            name="empresa" 
+                            class="formulario__input" 
+                            placeholder="Nombre de tu empresa"
+                            maxlength="100"
+                        >
+                    </div>
+                </div>
+
+                <!-- Tercera fila: Detalles del servicio -->
+                <div class="formulario__fila">
+                    <!-- Campo: Servicio solicitado (obligatorio) -->
+                    <div class="formulario__grupo">
+                        <label for="servicio" class="formulario__label">
+                            <i class="fas fa-cogs"></i>
+                            Servicio solicitado *
+                        </label>
+                        <!-- Select con opciones predefinidas para mejor UX -->
+                        <select id="servicio" name="servicio" class="formulario__select" required>
+                            <option value="">Selecciona un servicio</option>
+                            <option value="conectividad">Conectividad e Internet</option>
+                            <option value="redes">Instalación de Redes</option>
+                            <option value="seguridad">Seguridad y Firewall</option>
+                            <option value="mantenimiento">Mantenimiento de Sistemas</option>
+                            <option value="consultoria">Consultoría IT</option>
+                            <option value="otro">Otro servicio</option>
+                        </select>
+                        <span class="formulario__error" id="error-servicio"></span>
+                    </div>
+                    
+                    <!-- Campo: Nivel de urgencia -->
+                    <div class="formulario__grupo">
+                        <label for="urgencia" class="formulario__label">
+                            <i class="fas fa-clock"></i>
+                            Nivel de urgencia
+                        </label>
+                        <select id="urgencia" name="urgencia" class="formulario__select">
+                            <option value="baja">Baja (1-2 semanas)</option>
+                            <option value="normal" selected>Normal (3-4 semanas)</option>
+                            <option value="alta">Alta (1 semana)</option>
+                            <option value="urgente">Urgente (48-72 horas)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Cuarta fila: Presupuesto estimado -->
+                <div class="formulario__fila">
+                    <!-- Campo que ocupa toda la fila -->
+                    <div class="formulario__grupo formulario__grupo--completo">
+                        <label for="presupuesto_estimado" class="formulario__label">
+                            <i class="fas fa-dollar-sign"></i>
+                            Presupuesto estimado (opcional)
+                        </label>
+                        <input 
+                            type="text" 
+                            id="presupuesto_estimado" 
+                            name="presupuesto_estimado" 
+                            class="formulario__input" 
+                            placeholder="Ej: $50,000 - $100,000 o 'Consultar'"
+                            maxlength="100"
+                        >
+                        <!-- Texto de ayuda para guiar al usuario -->
+                        <small class="formulario__ayuda">Nos ayuda a entender mejor tus expectativas</small>
+                    </div>
+                </div>
+
+                <!-- Quinta fila: Descripción del proyecto -->
+                <div class="formulario__fila">
+                    <div class="formulario__grupo formulario__grupo--completo">
+                        <label for="descripcion" class="formulario__label">
+                            <i class="fas fa-file-alt"></i>
+                            Descripción del proyecto *
+                        </label>
+                        <!-- Área de texto para descripción detallada -->
+                        <textarea 
+                            id="descripcion" 
+                            name="descripcion" 
+                            class="formulario__textarea" 
+                            placeholder="Describe tu proyecto, necesidades específicas, ubicación, etc. Cuanto más detalle, mejor podremos ayudarte."
+                            required
+                            rows="5"
+                            maxlength="2000" <!-- Límite de caracteres -->
+                        ></textarea>
+                        <!-- Contador de caracteres en tiempo real -->
+                        <div class="formulario__contador">
+                            <span id="contador-caracteres">0</span> / 2000 caracteres
+                        </div>
+                        <span class="formulario__error" id="error-descripcion"></span>
+                    </div>
+                </div>
+
+                <!-- Botones de acción -->
+                <div class="formulario__acciones">
+                    <!-- Botón principal de envío -->
+                    <button type="submit" class="btn btn--grande" id="btnEnviarPresupuesto">
+                        <i class="fas fa-paper-plane"></i>
+                        <span class="btn__texto">Solicitar Presupuesto</span>
+                        <!-- Estado de carga (se muestra durante el envío) -->
+                        <span class="btn__cargando" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            Enviando...
+                        </span>
+                    </button>
+                    
+                    <!-- Botón para limpiar el formulario -->
+                    <button type="reset" class="btn btn--outline btn--grande">
+                        <i class="fas fa-undo"></i>
+                        Limpiar Formulario
+                    </button>
+                </div>
+
+                <!-- Contenedor para mensajes de estado del formulario -->
+                <!-- Los mensajes se insertan dinámicamente via JavaScript -->
+                <div class="formulario__mensajes" id="mensajesPresupuesto" style="display: none;">
+                    <!-- Los mensajes se insertan dinámicamente via JavaScript -->
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- ============ CTA FINAL ============ -->
+    <!-- Call to Action final para motivar la acción del usuario -->
+    <section class="seccion seccion--gris">
+        <div class="contenedor">
+            <div class="cta__final">
+                <h2>¿Listo para transformar tu conectividad?</h2>
+                <p>Miles de clientes ya confían en nosotros. ¡Es tu turno!</p>
+                <!-- Botones de acción principales -->
+                <div class="cta__botones">
+                    <a href="contacto.html" class="btn btn--grande">Comenzar Ahora</a>
+                    <a href="proyectos.html" class="btn btn--outline btn--grande">Ver Proyectos</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ============ PIE DE PÁGINA (FOOTER) ============ -->
+    <!-- Pie de página con:
+         - Enlaces importantes
+         - Redes sociales
+         - Información legal -->
+    <footer class="footer">
+        <div class="contenedor footer__contenido">
+            <p>&copy; 2025 ACE Ingeniería & Conectividad</p>
+            <div class="redes">
+                <!-- Enlaces de ejemplo; reemplazar por los reales -->
+                <a class="redes__link" href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                <a class="redes__link" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+        <small class="footer__legal">Este sitio es un trabajo práctico de Augusto Acosta.</small>
+    </footer>
+
+    <!-- Conexión con el JavaScript -->
+    <!-- Script principal del sitio -->
+    <script src="js/script.js"></script>
+    <!-- Script para manejo de formularios -->
+    <script src="js/formularios.js"></script>
+</body>
+</html>
