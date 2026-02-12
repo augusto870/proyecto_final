@@ -78,6 +78,18 @@ img { max-width: 100%; display: block; }
     line-height: 1.2;
 }
 
+/* Evitar subrayado o líneas indeseadas en el logo (link) en todos los dispositivos
+   Algunos navegadores móviles pueden mostrar subrayados o outlines en los enlaces;
+   forzamos que el logo no tenga decoración ni borde inferior. */
+.logo, .logo * {
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
+.logo:focus {
+    outline: none; /* evitar outline cuando se toca/selecciona el logo en móvil */
+}
+
 .logo__titulo {
     font-size: 1.8rem;
     font-weight: 800;
@@ -1062,14 +1074,23 @@ img { max-width: 100%; display: block; }
         padding: 8px 10px;
     }
 
+    /* En móvil: apilar título y subtítulo del logo y permitir salto de línea
+       para que se muestre completo (ACE + subtítulo). */
     .logo__texto {
-        flex-direction: row;
-        gap: 8px;
-        align-items: center;
+        flex-direction: column;
+        gap: 4px;
+        align-items: flex-start;
+        white-space: normal; /* permitir que el subtítulo baje a la siguiente línea */
     }
 
     .logo__titulo { font-size: 1.4rem; }
-    .logo__subtitulo { display: none; }
+    .logo__subtitulo {
+        display: block; /* mostrar subtítulo en móvil */
+        font-size: 0.8rem;
+        color: #e5e7eb;
+        margin: 0;
+        line-height: 1;
+    }
 
     .hero { padding-top: 40px; padding-bottom: 40px; }
     .hero__titulo { text-align: left; }
