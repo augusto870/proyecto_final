@@ -145,37 +145,20 @@ img { max-width: 100%; display: block; }
 ================================= */
 
 /* Hero (portada) */
+
+/* Hero (portada) */
 .hero {
-    /* Degradado menos marcado: reducir contraste y hacer transición más suave */
-    background: linear-gradient(180deg,
-        #0b3a70 0%,
-        rgba(11,58,112,0.95) 55%,
-        rgba(11,58,112,0.65) 70%,
-        rgba(238,243,248,0.95) 85%,
-        #eef3f8 100%
-    );
+    /* Fondo sólido solicitado */
+    background: #0b3a70;
     color: #fff;
     padding-top: 72px;
     padding-bottom: 72px;
-}
-
-/* Pseudo-elemento para suavizar la transición entre el hero y la siguiente sección
-   Evita que aparezca una línea dura que algunos navegadores renderizan en el cambio
-   de color. Ajustar altura si es necesario. */
-.hero {
     position: relative;
 }
+
+/* Desactivar pseudo-elemento de fundido (el degradado fue removido) */
 .hero::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -2px; /* leve desplazamiento para quedar justo fuera del contenido */
-    height: 12px; /* reducir área de fundido para que no tape botones */
-    pointer-events: none;
-    /* gradiente muy sutil para suavizar el corte sin marcarlo */
-    background: linear-gradient(180deg, rgba(11,58,112,0.0) 0%, rgba(11,58,112,0.12) 40%, rgba(238,243,248,0.95) 100%);
-    z-index: 0;
+    display: none !important;
 }
 
 /* Asegurar que el contenido del hero quede por encima del pseudo-elemento
