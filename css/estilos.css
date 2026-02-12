@@ -146,9 +146,14 @@ img { max-width: 100%; display: block; }
 
 /* Hero (portada) */
 .hero {
-    /* Usar un degradado más suave para evitar una línea dura entre secciones
-       que puede aparecer como 'subrayado' cuando el texto queda cerca. */
-    background: linear-gradient(180deg, #0b3a70 0%, #0b3a70 65%, #0b6aa0 75%, #eef3f8 82%, #eef3f8 100%);
+    /* Degradado menos marcado: reducir contraste y hacer transición más suave */
+    background: linear-gradient(180deg,
+        #0b3a70 0%,
+        rgba(11,58,112,0.95) 55%,
+        rgba(11,58,112,0.65) 70%,
+        rgba(238,243,248,0.95) 85%,
+        #eef3f8 100%
+    );
     color: #fff;
     padding-top: 72px;
     padding-bottom: 72px;
@@ -165,11 +170,23 @@ img { max-width: 100%; display: block; }
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -1px; /* cubre la posible línea */
-    height: 24px; /* área de fundido */
+    bottom: -2px; /* leve desplazamiento para quedar justo fuera del contenido */
+    height: 12px; /* reducir área de fundido para que no tape botones */
     pointer-events: none;
-    background: linear-gradient(180deg, rgba(11,58,112,0) 0%, rgba(238,243,248,1) 100%);
+    /* gradiente muy sutil para suavizar el corte sin marcarlo */
+    background: linear-gradient(180deg, rgba(11,58,112,0.0) 0%, rgba(11,58,112,0.12) 40%, rgba(238,243,248,0.95) 100%);
+    z-index: 0;
 }
+
+/* Asegurar que el contenido del hero quede por encima del pseudo-elemento
+   para que botones y texto no queden tapados por el fundido. */
+.hero > .contenedor {
+    position: relative;
+    z-index: 1;
+}
+
+/* Poniendo el pseudo-elemento en una capa inferior */
+.hero::after { z-index: 0; }
 .hero__titulo { font-size: clamp(28px, 5vw, 42px); margin: 0 0 8px; }
 .hero__bajada { margin: 0 0 18px; }
 
