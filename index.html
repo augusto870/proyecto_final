@@ -42,8 +42,15 @@
                     </div>
                 </div>
             </a>
+            <!-- Botón hamburguesa para navegación móvil
+                 Visible solo en pantallas pequeñas; controla la apertura
+                 del listado de navegación (#navLista). -->
+            <button class="nav__boton-movil" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLista">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
             <nav class="nav" aria-label="Navegación principal" role="navigation">
-                <ul class="nav__lista">
+                <!-- Añadimos id para que el botón hamburguesa pueda controlarlo -->
+                <ul id="navLista" class="nav__lista">
                     <li><a class="nav__link" href="index.html">Inicio</a></li>
                     <li><a class="nav__link" href="nosotros.html">Nosotros</a></li>
                     <li><a class="nav__link" href="servicios.html">Servicios</a></li>

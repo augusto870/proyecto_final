@@ -403,6 +403,7 @@ function inicializarSitio() {
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Sitio inicializado');
     inicializarNavegacionMovil();
+    configurarMenuHamburguesa(); // inicializar menú hamburguesa (móvil)
     inicializarValidacionBasica();
 });
 
@@ -488,3 +489,41 @@ function esDispositivoMovil() {
 window.mostrarNotificacion = mostrarNotificacion;
 window.formatearTelefono = formatearTelefono;
 window.esDispositivoMovil = esDispositivoMovil;
+
+/* ==================================================
+   Menu Hamburguesa (nuevo)
+   - Esta función agrega la lógica para abrir/cerrar
+     el menú de navegación en dispositivos móviles.
+   - No modifica el DOM más allá de alternar clases
+     y atributos ARIA para accesibilidad.
+   - Comentarios: mantener simple y robusto.
+================================================== */
+function configurarMenuHamburguesa() {
+    const boton = document.querySelector('.nav__boton-movil');
+    const menu = document.querySelector('#navLista');
+    if (!boton || !menu) return; // no hacer nada si no existen
+
+    // Alterna la visibilidad del menú y actualiza atributos ARIA
+    boton.addEventListener('click', () => {
+        const abierto = menu.classList.toggle('nav__lista--activo');
+        boton.classList.toggle('nav__boton--activo');
+        boton.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+
+        // Cambiar icono (FontAwesome) para indicar estado
+        const icono = boton.querySelector('i');
+        if (icono) {
+            icono.className = abierto ? 'fas fa-times' : 'fas fa-bars';
+        }
+    });
+
+    // Cerrar el menú si se hace click en un enlace del menú
+    menu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+            menu.classList.remove('nav__lista--activo');
+            boton.classList.remove('nav__boton--activo');
+            boton.setAttribute('aria-expanded', 'false');
+            const icono = boton.querySelector('i');
+            if (icono) icono.className = 'fas fa-bars';
+        });
+    });
+}

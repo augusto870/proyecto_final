@@ -998,6 +998,102 @@ img { max-width: 100%; display: block; }
     transform: translateY(-3px);
 }
 
+/* ==============================
+   REGLAS RESPONSIVE (MÓVIL / TABLET)
+   - Ajustes básicos para evitar overflow
+   - Convertir grids de 2 columnas a 1 en pantallas pequeñas
+   - Reducir tamaños de elementos grandes
+============================== */
+@media (max-width: 768px) {
+    .header__contenido {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px 0;
+    }
+
+    /* En móvil el listado de navegación se oculta por defecto
+       y se muestra cuando tiene la clase '--activo' */
+    .nav__lista {
+        display: none; /* oculto por defecto en móvil */
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+
+    /* Botón hamburguesa: oculto en escritorio, visible en móvil */
+    .nav__boton-movil {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 1.25rem;
+        padding: 6px 8px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+
+    /* Cuando el menú está activo, mostrarlo */
+    .nav__lista--activo {
+        display: flex; /* se muestra cuando está activo */
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .nav__link {
+        display: block;
+        width: 100%;
+        padding: 8px 10px;
+    }
+
+    .logo__texto {
+        flex-direction: row;
+        gap: 8px;
+        align-items: center;
+    }
+
+    .logo__titulo { font-size: 1.4rem; }
+    .logo__subtitulo { display: none; }
+
+    .hero { padding-top: 40px; padding-bottom: 40px; }
+    .hero__titulo { text-align: left; }
+
+    .contenedor { width: 94%; }
+
+    /* Forzar columnas a una sola en pantallas pequeñas */
+    .form, .formulario__fila, .nosotros__contenido, .contacto__contenido,
+    .busqueda__input input { grid-template-columns: 1fr; display: block; }
+
+    .formulario__grupo { width: 100%; }
+
+    .btn--grande { padding: 10px 18px; font-size: 1rem; }
+    .cta__final { padding: 2rem; }
+
+    .footer__contenido { flex-direction: column; text-align: center; }
+
+    .destacados__grid, .servicios__rapidos, .servicios__grid, .articulos__grid,
+    .herramientas__grid, .proyectos__grid {
+        grid-template-columns: 1fr !important;
+    }
+
+    img { height: auto; max-width: 100%; }
+
+    /* Evitar scroll horizontal accidental */
+    html, body { overflow-x: hidden; }
+}
+
+@media (max-width: 480px) {
+    .logo__icono { width: 40px; height: 40px; font-size: 1.2rem; }
+    .logo__titulo { font-size: 1.1rem; }
+    .hero__titulo { font-size: clamp(22px, 6vw, 30px); }
+    .nav__lista { gap: 6px; }
+}
+
+
 .herramienta__icono {
     width: 60px;
     height: 60px;
