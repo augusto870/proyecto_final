@@ -255,6 +255,11 @@ img { max-width: 100%; display: block; }
     flex-wrap: wrap;
 }
 
+/* Botones que se muestran fuera del hero (debajo de la portada) */
+.hero__botones--externo {
+    margin: 18px 0 28px; /* separarlos del hero y del siguiente contenido */
+}
+
 .btn--outline {
     background: transparent;
     color: #0b3a70;
