@@ -139,5 +139,24 @@
 
     <!-- Conexión con el JavaScript -->
     <script src="js/script.js"></script>
+    <!-- Script defensivo para el menú hamburguesa (asegura toggle aunque script principal falle) -->
+    <script>
+        (function(){
+            try {
+                const boton = document.querySelector('.nav__boton-movil');
+                const menu = document.querySelector('#navLista');
+                if (!boton || !menu) return;
+                if (!boton.dataset.hamburguesaInit) {
+                    boton.addEventListener('click', () => {
+                        const abierto = menu.classList.toggle('nav__lista--activo');
+                        boton.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+                        const icono = boton.querySelector('i');
+                        if (icono) icono.className = abierto ? 'fas fa-times' : 'fas fa-bars';
+                    });
+                    boton.dataset.hamburguesaInit = 'true';
+                }
+            } catch (e) { console.warn('hamburguesa init error', e); }
+        })();
+    </script>
 </body>
 </html>

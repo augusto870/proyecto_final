@@ -47,6 +47,18 @@ img { max-width: 100%; display: block; }
     text-decoration: none;
 }
 
+/* Asegurar que el logo no corte su texto en pantallas angostas */
+.logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo__texto {
+    white-space: nowrap; /* evitar salto de línea dentro del logo */
+    overflow: visible;
+}
+
 .logo__icono {
     width: 48px;
     height: 48px;
