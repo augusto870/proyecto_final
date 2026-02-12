@@ -109,8 +109,8 @@
                     <h2>Envíanos un Mensaje</h2>
                     
                     <!-- Formulario con validación básica en JS -->
-                    <!-- action apunta a un PHP muy simple de ejemplo -->
-                    <form action="php/enviar.php" method="POST" id="form-contacto" class="form">
+                    <!-- Envíos via Formspree: reemplazá el ID si querés otro destino -->
+                    <form id="formContacto" class="form" data-formspree="xwvnlbab" novalidate>
                         <!-- name y required ayudan a la validación y al backend -->
                         <label class="form__label">
                             <span>Nombre *</span>

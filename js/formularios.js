@@ -23,12 +23,14 @@ class ManejadorFormularios {
         const formPresupuesto = document.getElementById('formPresupuesto');
         const formContacto = document.getElementById('formContacto');
 
+        // Usar rutas relativas (sin leading slash) para evitar problemas en hospedajes
+        // que sirvan el site desde una subcarpeta o desde plataformas estáticas.
         if (formPresupuesto) {
-            this.configurarFormulario(formPresupuesto, '/php/presupuesto.php');
+            this.configurarFormulario(formPresupuesto, 'php/presupuesto.php');
         }
 
         if (formContacto) {
-            this.configurarFormulario(formContacto, '/php/enviar.php');
+            this.configurarFormulario(formContacto, 'php/enviar.php');
         }
     }
 
@@ -45,7 +47,14 @@ class ManejadorFormularios {
         // Event listener para el envío
         formulario.addEventListener('submit', (e) => {
             e.preventDefault();
-            this.manejarEnvio(formulario, url);
+            // Si el formulario declara un data-formspree, usar ese endpoint
+            const formspreeId = formulario.dataset.formspree;
+            if (formspreeId) {
+                const fsUrl = `https://formspree.io/f/${formspreeId}`;
+                this.manejarEnvio(formulario, fsUrl);
+            } else {
+                this.manejarEnvio(formulario, url);
+            }
         });
 
         // Configurar contador si hay textarea
@@ -88,6 +97,17 @@ class ManejadorFormularios {
                 // Hook: ejecutar función global si está definida
                 if (typeof window.onFormSent === 'function') {
                     try { window.onFormSent(formulario); } catch (e) { console.error(e); }
+                }
+            } else if (respuesta.status === 404) {
+                // 404 frecuente cuando el host no soporta PHP (p.ej. Netlify)
+                const mensaje = 'No se encontró el endpoint en el servidor (404). Verificá que el hosting soporte PHP o configurá un endpoint alternativo.';
+                if (window.mostrarNotificacion) {
+                    window.mostrarNotificacion(mensaje, 'error', 6000);
+                } else {
+                    alert(mensaje);
+                }
+                if (typeof window.onFormError === 'function') {
+                    try { window.onFormError(formulario, respuesta); } catch (e) { console.error(e); }
                 }
             } else {
                 if (window.mostrarNotificacion) {
