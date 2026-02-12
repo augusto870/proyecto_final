@@ -399,5 +399,31 @@
     <script src="js/script.js"></script>
     <!-- Script para manejo de formularios -->
     <script src="js/formularios.js"></script>
+    <!-- Script defensivo: asegura que el botón hamburguesa funcione
+         incluso si el archivo principal tiene errores. Añadido para
+         robustez durante pruebas en dispositivos móviles. -->
+    <script>
+        (function(){
+            try {
+                const boton = document.querySelector('.nav__boton-movil');
+                const menu = document.querySelector('#navLista');
+                if (!boton || !menu) return;
+
+                // Evitar añadir múltiples listeners si ya existen
+                if (!boton.dataset.hamburguesaInit) {
+                    boton.addEventListener('click', () => {
+                        const abierto = menu.classList.toggle('nav__lista--activo');
+                        boton.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+                        const icono = boton.querySelector('i');
+                        if (icono) icono.className = abierto ? 'fas fa-times' : 'fas fa-bars';
+                    });
+                    boton.dataset.hamburguesaInit = 'true';
+                }
+            } catch (e) {
+                // Si algo falla, no rompemos el resto del sitio
+                console.warn('Error init hamburguesa (defensivo):', e);
+            }
+        })();
+    </script>
 </body>
 </html>
