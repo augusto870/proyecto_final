@@ -78,14 +78,37 @@ class ManejadorFormularios {
             });
 
             if (respuesta.ok) {
-                alert('Formulario enviado correctamente');
+                // Feedback: usar notificación si está disponible, si no usar alert
+                if (window.mostrarNotificacion) {
+                    window.mostrarNotificacion('Formulario enviado correctamente', 'exito');
+                } else {
+                    alert('Formulario enviado correctamente');
+                }
                 formulario.reset();
+                // Hook: ejecutar función global si está definida
+                if (typeof window.onFormSent === 'function') {
+                    try { window.onFormSent(formulario); } catch (e) { console.error(e); }
+                }
             } else {
-                alert('Error al enviar el formulario');
+                if (window.mostrarNotificacion) {
+                    window.mostrarNotificacion('Error al enviar el formulario', 'error');
+                } else {
+                    alert('Error al enviar el formulario');
+                }
+                if (typeof window.onFormError === 'function') {
+                    try { window.onFormError(formulario, respuesta); } catch (e) { console.error(e); }
+                }
             }
         } catch (error) {
             console.error('Error:', error);
-            alert('Error al enviar el formulario');
+            if (window.mostrarNotificacion) {
+                window.mostrarNotificacion('Error al enviar el formulario', 'error');
+            } else {
+                alert('Error al enviar el formulario');
+            }
+            if (typeof window.onFormError === 'function') {
+                try { window.onFormError(formulario, error); } catch (e) { console.error(e); }
+            }
         } finally {
             if (botonSubmit) {
                 botonSubmit.disabled = false;

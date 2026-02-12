@@ -407,6 +407,24 @@ document.addEventListener('DOMContentLoaded', () => {
     inicializarValidacionBasica();
 });
 
+// Hook por defecto cuando un formulario se envía correctamente
+window.onFormSent = function(formulario) {
+    if (window.mostrarNotificacion) {
+        window.mostrarNotificacion('Gracias — mensaje recibido. Te contactamos pronto.', 'exito', 3500);
+    } else {
+        alert('Gracias — mensaje recibido.');
+    }
+};
+
+// Hook por defecto en caso de error
+window.onFormError = function(formulario, error) {
+    if (window.mostrarNotificacion) {
+        window.mostrarNotificacion('No se pudo enviar el formulario. Intentá nuevamente.', 'error', 3500);
+    } else {
+        alert('Error al enviar el formulario.');
+    }
+};
+
 // ============================================
 // FUNCIONES DE UTILIDAD GLOBAL
 // ============================================
