@@ -88,6 +88,11 @@ class ManejadorFormularios {
                 if (correo && correo.value) formData.set('_replyto', correo.value);
             }
 
+            // Elemento de estado visible en la UI (si existe)
+            const statusEl = formulario.querySelector('.form__estado') || document.getElementById('msj-presupuesto') || document.getElementById('msj-estado');
+
+            // Enviar petición
+            console.log('Enviando formulario a:', url);
             const respuesta = await fetch(url, {
                 method: 'POST',
                 headers: {
@@ -96,10 +101,23 @@ class ManejadorFormularios {
                 body: formData
             });
 
+            // Registrar estado básico en consola y en UI para depuración
+            console.log('Respuesta status:', respuesta.status, respuesta.statusText);
+            if (statusEl) statusEl.textContent = `Enviando... status ${respuesta.status}`;
+
             if (respuesta.ok) {
                 // Intentar leer JSON (Formspree devuelve JSON si Accept es application/json)
                 let cuerpo = null;
                 try { cuerpo = await respuesta.json(); } catch (e) { /* ignorar */ }
+                if (cuerpo) {
+                    console.log('Respuesta body:', cuerpo);
+                    if (statusEl) statusEl.textContent = `Enviado correctamente. Respuesta: ${JSON.stringify(cuerpo)}`;
+                } else {
+                    const text = await respuesta.text().catch(() => '');
+                    console.log('Respuesta text:', text);
+                    if (statusEl) statusEl.textContent = `Enviado correctamente.`;
+                }
+
                 // Feedback: usar notificación si está disponible, si no usar alert
                 if (window.mostrarNotificacion) {
                     window.mostrarNotificacion('Formulario enviado correctamente', 'exito');
@@ -114,6 +132,7 @@ class ManejadorFormularios {
             } else if (respuesta.status === 404) {
                 // 404 frecuente cuando el host no soporta PHP (p.ej. Netlify)
                 const mensaje = 'No se encontró el endpoint en el servidor (404). Verificá que el hosting soporte PHP o configurá un endpoint alternativo.';
+                if (statusEl) statusEl.textContent = mensaje;
                 if (window.mostrarNotificacion) {
                     window.mostrarNotificacion(mensaje, 'error', 6000);
                 } else {
@@ -123,6 +142,9 @@ class ManejadorFormularios {
                     try { window.onFormError(formulario, respuesta); } catch (e) { console.error(e); }
                 }
             } else {
+                const text = await respuesta.text().catch(() => '');
+                console.log('Error response body:', text);
+                if (statusEl) statusEl.textContent = `Error al enviar: ${respuesta.status} ${respuesta.statusText} ${text}`;
                 if (window.mostrarNotificacion) {
                     window.mostrarNotificacion('Error al enviar el formulario', 'error');
                 } else {
