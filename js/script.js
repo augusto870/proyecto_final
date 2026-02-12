@@ -425,6 +425,17 @@ window.onFormError = function(formulario, error) {
     }
 };
 
+// Prefill recommended email (puedes cambiarlo si querés)
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        const defaultEmail = 'augustoacosta1844@gmail.com';
+        // rellenar inputs email en cualquier formulario si están vacíos
+        document.querySelectorAll('input[type="email"]').forEach(inp => {
+            if (!inp.value) inp.value = defaultEmail;
+        });
+    } catch (e) { console.warn('No se pudo prefill email', e); }
+});
+
 // ============================================
 // FUNCIONES DE UTILIDAD GLOBAL
 // ============================================

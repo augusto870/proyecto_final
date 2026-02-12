@@ -81,12 +81,25 @@ class ManejadorFormularios {
         }
 
         try {
+            // Construir FormData y asegurar _replyto (para Formspree)
+            const formData = new FormData(formulario);
+            if (!formData.get('_replyto')) {
+                const correo = formulario.querySelector('input[name="email"]');
+                if (correo && correo.value) formData.set('_replyto', correo.value);
+            }
+
             const respuesta = await fetch(url, {
                 method: 'POST',
-                body: new FormData(formulario)
+                headers: {
+                    'Accept': 'application/json'
+                },
+                body: formData
             });
 
             if (respuesta.ok) {
+                // Intentar leer JSON (Formspree devuelve JSON si Accept es application/json)
+                let cuerpo = null;
+                try { cuerpo = await respuesta.json(); } catch (e) { /* ignorar */ }
                 // Feedback: usar notificación si está disponible, si no usar alert
                 if (window.mostrarNotificacion) {
                     window.mostrarNotificacion('Formulario enviado correctamente', 'exito');
