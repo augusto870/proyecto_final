@@ -1066,8 +1066,10 @@ img { max-width: 100%; display: block; }
 ============================== */
 @media (max-width: 768px) {
     .header__contenido {
-        flex-direction: column;
-        align-items: flex-start;
+        /* Mantener logo y navegación en fila en móvil (logo al costado)
+           y no centrar el header: así el logo queda a la izquierda. */
+        flex-direction: row;
+        align-items: center;
         gap: 10px;
         padding: 10px 0;
     }
@@ -1110,22 +1112,9 @@ img { max-width: 100%; display: block; }
         padding: 8px 10px;
     }
 
-    /* En móvil: apilar título y subtítulo del logo y permitir salto de línea
-       para que se muestre completo (ACE + subtítulo). */
+    /* En móvil: ocultar solo el texto del logo (quedará el icono al costado) */
     .logo__texto {
-        flex-direction: column;
-        gap: 4px;
-        align-items: flex-start;
-        white-space: normal; /* permitir que el subtítulo baje a la siguiente línea */
-    }
-
-    .logo__titulo { font-size: 1.4rem; }
-    .logo__subtitulo {
-        display: block; /* mostrar subtítulo en móvil */
-        font-size: 0.8rem;
-        color: #e5e7eb;
-        margin: 0;
-        line-height: 1;
+        display: none !important;
     }
 
     .hero { padding-top: 48px; padding-bottom: 64px; }
@@ -1174,19 +1163,6 @@ img { max-width: 100%; display: block; }
         align-items: center;
     }
 
-    /* Hacer que ambos botones en el hero tengan el mismo estilo en móvil
-       - Fondo azul, texto blanco, sin borde
-       - Más padding y borde redondeado para mejor tap target */
-    .hero--principal .hero__botones .btn,
-    .hero--principal .hero__botones .btn--outline {
-        background: #0b3a70 !important;
-        color: #ffffff !important;
-        border: none !important;
-        padding: 12px 18px !important;
-        border-radius: 8px !important;
-        box-shadow: 0 4px 12px rgba(11,58,112,0.12);
-    }
-
     /* Si preferís botones de ancho completo en móvil, descomenta lo siguiente */
     /*
     .hero--principal .hero__botones .btn,
@@ -1203,58 +1179,6 @@ img { max-width: 100%; display: block; }
     .hero__titulo { font-size: clamp(22px, 6vw, 30px); }
     .nav__lista { gap: 6px; }
 }
-
-/* Ajustes adicionales solo para móvil: mejorar legibilidad y evitar elementos tapados */
-@media (max-width: 768px) {
-    /* Centrar contenido del header para que el logo quede centrado en móvil */
-    .header__contenido {
-        align-items: center;
-        position: relative;
-    }
-
-    /* Colocar el botón hamburguesa en la izquierda y encima */
-    .nav__boton-movil {
-        position: absolute;
-        left: 12px;
-        top: 12px;
-        background: transparent;
-        color: #fff;
-        z-index: 3;
-    }
-
-    /* Hero: usar color sólido y menos padding para que no ocupe demasiado espacio */
-    .hero {
-        background: #0b3a70 !important;
-        padding-top: 36px !important;
-        padding-bottom: 28px !important;
-    }
-
-    /* Ocultar el pseudo-elemento degradado en móvil (era demasiado marcado) */
-    .hero::after { display: none !important; }
-
-    /* Botones del hero: ancho completo y centrados para mejor usabilidad */
-    .hero--principal .hero__botones {
-        margin-top: 14px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        align-items: stretch;
-    }
-
-    .hero--principal .hero__botones .btn,
-    .hero--principal .hero__botones .btn--outline {
-        display: block !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        background: #0b3a70 !important;
-        color: #fff !important;
-        border: none !important;
-        padding: 12px 16px !important;
-        border-radius: 8px !important;
-        box-shadow: 0 6px 18px rgba(11,58,112,0.12) !important;
-    }
-}
-
 
 .herramienta__icono {
     width: 60px;
