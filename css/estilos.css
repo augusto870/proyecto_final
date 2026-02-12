@@ -146,10 +146,29 @@ img { max-width: 100%; display: block; }
 
 /* Hero (portada) */
 .hero {
-    background: linear-gradient(180deg, #0b3a70 0%, #0b3a70 55%, #eef3f8 55%, #eef3f8 100%);
+    /* Usar un degradado más suave para evitar una línea dura entre secciones
+       que puede aparecer como 'subrayado' cuando el texto queda cerca. */
+    background: linear-gradient(180deg, #0b3a70 0%, #0b3a70 65%, #0b6aa0 75%, #eef3f8 82%, #eef3f8 100%);
     color: #fff;
     padding-top: 72px;
     padding-bottom: 72px;
+}
+
+/* Pseudo-elemento para suavizar la transición entre el hero y la siguiente sección
+   Evita que aparezca una línea dura que algunos navegadores renderizan en el cambio
+   de color. Ajustar altura si es necesario. */
+.hero {
+    position: relative;
+}
+.hero::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px; /* cubre la posible línea */
+    height: 24px; /* área de fundido */
+    pointer-events: none;
+    background: linear-gradient(180deg, rgba(11,58,112,0) 0%, rgba(238,243,248,1) 100%);
 }
 .hero__titulo { font-size: clamp(28px, 5vw, 42px); margin: 0 0 8px; }
 .hero__bajada { margin: 0 0 18px; }
@@ -1092,8 +1111,9 @@ img { max-width: 100%; display: block; }
         line-height: 1;
     }
 
-    .hero { padding-top: 40px; padding-bottom: 40px; }
+    .hero { padding-top: 48px; padding-bottom: 64px; }
     .hero__titulo { text-align: left; }
+    .hero__bajada { margin-bottom: 22px; }
 
     .contenedor { width: 94%; }
 
@@ -1117,6 +1137,21 @@ img { max-width: 100%; display: block; }
 
     /* Evitar scroll horizontal accidental */
     html, body { overflow-x: hidden; }
+
+    /* ======================================================
+       Ocultar texto del hero SOLO en la página principal (móvil)
+       - La clase `hero--principal` se añadió en index.html
+       - Esto mantiene el mismo diseño en el resto de las páginas
+       - Los botones del hero quedan visibles para mantener CTAs
+    ====================================================== */
+    .hero--principal .hero__titulo,
+    .hero--principal .hero__bajada {
+        display: none !important; /* ocultar en móviles */
+    }
+
+    .hero--principal .hero__botones {
+        margin-top: 8px; /* separar botones si el texto se oculta */
+    }
 }
 
 @media (max-width: 480px) {
