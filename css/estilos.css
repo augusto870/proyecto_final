@@ -1112,9 +1112,24 @@ img { max-width: 100%; display: block; }
         padding: 8px 10px;
     }
 
-    /* En móvil: ocultar solo el texto del logo (quedará el icono al costado) */
+
+    /* En móvil: apilar título y subtítulo del logo y permitir salto de línea
+       para que se muestre completo (ACE + subtítulo). */
     .logo__texto {
-        display: none !important;
+        flex-direction: column;
+        gap: 4px;
+        align-items: flex-start;
+        white-space: normal; /* permitir que el subtítulo baje a la siguiente línea */
+        display: flex !important;
+    }
+
+    .logo__titulo { font-size: 1.4rem; }
+    .logo__subtitulo {
+        display: block; /* mostrar subtítulo en móvil */
+        font-size: 0.8rem;
+        color: #e5e7eb;
+        margin: 0;
+        line-height: 1;
     }
 
     .hero { padding-top: 48px; padding-bottom: 64px; }
@@ -1150,11 +1165,6 @@ img { max-width: 100%; display: block; }
        - Esto mantiene el mismo diseño en el resto de las páginas
        - Los botones del hero quedan visibles para mantener CTAs
     ====================================================== */
-    .hero--principal .hero__titulo,
-    .hero--principal .hero__bajada {
-        display: none !important; /* ocultar en móviles */
-    }
-
     .hero--principal .hero__botones {
         margin-top: 18px; /* separar botones si el texto se oculta */
         display: flex;
