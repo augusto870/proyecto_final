@@ -110,7 +110,16 @@
                     
                     <!-- Formulario con validación básica en JS -->
                     <!-- Envíos via Formspree: reemplazá el ID si querés otro destino -->
-                    <form id="formContacto" class="form" data-formspree="xwvnlbab" novalidate>
+                    <form 
+  id="formContacto" 
+  class="form"
+  action="https://formspree.io/f/xwvnlbab"
+  method="POST"
+  novalidate
+>
+<input type="hidden" name="_subject" value="Nuevo mensaje desde ACE Ingeniería">
+<input type="hidden" name="_captcha" value="false">
+
                         <!-- name y required ayudan a la validación y al backend -->
                         <label class="form__label">
                             <span>Nombre *</span>
@@ -188,5 +197,39 @@
             } catch (e) { console.warn('hamburguesa init error', e); }
         })();
     </script>
+
+<div id="formMsg" style="display:none; margin-top:15px; color:green; font-weight:bold;">
+Mensaje enviado correctamente ✔️
+</div>
+
+<script>
+const form = document.getElementById("formContacto");
+const msg = document.getElementById("formMsg");
+
+form.addEventListener("submit", async function(e){
+  e.preventDefault();
+
+  const data = new FormData(form);
+
+  try{
+    const res = await fetch(form.action, {
+      method: "POST",
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if(res.ok){
+      form.reset();
+      msg.style.display = "block";
+    } else {
+      alert("Error al enviar. Intente más tarde.");
+    }
+
+  }catch(err){
+    alert("Error de conexión.");
+  }
+});
+</script>
+
 </body>
 </html>
