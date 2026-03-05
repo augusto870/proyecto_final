@@ -9,62 +9,12 @@
  * Archivo que maneja la interactividad básica del sitio
  */
 
-/**
- * Función para manejar el menú móvil
- * @description Controla la visibilidad del menú en dispositivos móviles
- */
-function inicializarNavegacionMovil() {
-    const botonMenu = document.querySelector('.nav__boton-movil');
-    const menu = document.querySelector('.nav__lista');
-    
-    if (!botonMenu || !menu) return; // Validación defensiva
-    
-    // Event listener para abrir/cerrar menú
-    botonMenu.addEventListener('click', () => {
-        // Alternar clase activa para mostrar/ocultar menú
-        menu.classList.toggle('nav__lista--activo');
-        botonMenu.classList.toggle('nav__boton--activo');
-        
-        // Cambiar icono del botón
-        const icono = botonMenu.querySelector('i');
-        if (icono) {
-            if (menu.classList.contains('nav__lista--activo')) {
-                icono.className = 'fas fa-times'; // Icono X cuando está abierto
-            } else {
-                icono.className = 'fas fa-bars'; // Icono hamburguesa cuando está cerrado
-            }
-        }
-    });
 
-    // Cerrar menú al hacer clic en un enlace
-    const enlaces = menu.querySelectorAll('a');
-    enlaces.forEach(enlace => {
-        enlace.addEventListener('click', () => {
-            menu.classList.remove('nav__lista--activo');
-            botonMenu.classList.remove('nav__boton--activo');
-            
-            const icono = botonMenu.querySelector('i');
-            if (icono) {
-                icono.className = 'fas fa-bars';
-            }
-        });
-    });
-}
-
-/**
- * Inicializa la navegación móvil
- * Maneja el botón de menú y la visualización en móviles
- */
-function inicializarNavegacionMovil() {
-    const botonMenu = document.querySelector('.nav__boton-movil');
-    const menu = document.querySelector('.nav__lista');
-    
-    if (!botonMenu || !menu) return;
-    
-    botonMenu.addEventListener('click', () => {
-        menu.classList.toggle('nav__lista--activo');
-    });
-} // Faltaba esta llave de cierre
+/* === navegación móvil ===
+   Se utiliza la función `configurarMenuHamburguesa` más abajo, 
+   que contiene la lógica completa y accesible para desplegar el
+   menú en dispositivos pequeños. Las definiciones anteriores se
+   eliminaron para evitar comportamiento errático. */
 
 // ============================================
 // SCROLL SUAVE
@@ -256,6 +206,123 @@ function validarEmail(email) {
 // ============================================
 
 /**
+ * Función para habilitar el buscador de la base de conocimientos.
+ * Busca texto dentro de tarjetas de categoría, artículos y herramientas,
+ * ocultando las que no coincidieron con la consulta.
+ */
+function inicializarBuscadorBase() {
+    const input = document.getElementById('busqueda-input');
+    if (!input) return; // no estamos en la página adecuada
+
+    const elementos = document.querySelectorAll('.categoria__card, .articulo__card, .herramienta__card');
+    const secciones = [
+        {grid: '.articulos__grid', heading: '.articulos__seccion h2'},
+        {grid: '.herramientas__grid', heading: '.herramientas__seccion h2'}
+    ];
+
+    const mensaje = document.getElementById('busqueda-mensaje');
+    const clearBtn = document.getElementById('busqueda-clear');
+
+    // helper para quitar acentos y normalizar texto
+    const normalizar = txt => txt
+        .normalize('NFD')               // descomponer acentos
+        .replace(/\p{Diacritic}/gu, '') // eliminar marcas diacríticas
+        .toLowerCase();                 // pasar a minúsculas
+
+    input.addEventListener('input', () => {
+        let q = input.value.trim();
+        q = normalizar(q);
+
+        // controlar iconos: borrar y lupa
+        if (clearBtn) {
+            clearBtn.style.display = q ? 'block' : 'none';
+        }
+        const lupa = document.querySelector('.busqueda__input .fa-search');
+        if (lupa) {
+            lupa.style.display = q ? 'none' : 'block';
+        }
+
+        // eliminar resaltados previos
+        elementos.forEach(el => {
+            el.querySelectorAll('.busqueda-highlight').forEach(span => {
+                span.replaceWith(document.createTextNode(span.textContent));
+            });
+        });
+
+        elementos.forEach(el => {
+            const texto = normalizar(el.textContent);
+            const mostrar = q === '' || texto.includes(q);
+            el.style.display = mostrar ? '' : 'none';
+
+            // aplicar highlight si se muestra y hay query
+            if (mostrar && q) {
+                resaltarCoincidencias(el, q);
+            }
+        });
+
+        // ocultar/mostrar títulos de sección según contenido visible
+        secciones.forEach(cfg => {
+            const grid = document.querySelector(cfg.grid);
+            const header = document.querySelector(cfg.heading);
+            if (grid && header) {
+                const anyVisible = Array.from(grid.children).some(c => c.style.display !== 'none');
+                header.style.display = anyVisible ? '' : 'none';
+            }
+        });
+
+        // mostrar mensaje si no hay elementos visibles
+        if (mensaje) {
+            const anyVis = Array.from(elementos).some(el => el.style.display !== 'none');
+            mensaje.style.display = anyVis ? 'none' : 'block';
+        }
+    });
+
+    if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+            input.value = '';
+            input.dispatchEvent(new Event('input'));
+            input.focus();
+        });
+    }
+}
+
+/**
+ * Añade un <span> con clase de resaltado alrededor de todas las coincidencias
+ * dentro del elemento dado.
+ *
+ * En lugar de usar innerHTML, recorremos los nodos de texto para evitar tocar
+ * etiquetas o atributos y así no corromper la estructura HTML.
+ */
+function resaltarCoincidencias(el, q) {
+    const escaped = q.replace(/[-\/\\^$*+?.()|[\]{}]/g,'\\$&');
+    const regex = new RegExp(`(${escaped})`, 'gi');
+
+    // recolectar textos primero (walker evita modificaciones mientras iteramos)
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+    const textos = [];
+    while (walker.nextNode()) {
+        textos.push(walker.currentNode);
+    }
+
+    textos.forEach(textNode => {
+        const parent = textNode.parentNode;
+        const texto = textNode.nodeValue;
+        const nuevo = texto.replace(regex, '<span class="busqueda-highlight">$1</span>');
+        if (nuevo !== texto) {
+            // crear fragmento temporal para interpretar el HTML
+            const temp = document.createElement('span');
+            temp.innerHTML = nuevo;
+            // reemplazar texto original por el contenido enriquecido
+            while (temp.firstChild) {
+                parent.insertBefore(temp.firstChild, textNode);
+            }
+            parent.removeChild(textNode);
+        }
+    });
+}
+
+
+/**
  * Función para manejar enlaces externos
  * Abre enlaces externos en nueva pestaña
  * 
@@ -355,9 +422,9 @@ function inicializarModoOscuro() {
 function inicializarSitio() {
     console.log('🚀 Inicializando funcionalidades del sitio...');
     
-    // Inicializar navegación móvil
-    inicializarNavegacionMovil();
-    console.log('✅ Navegación móvil configurada');
+    // Inicializar menú hamburguesa/navegación móvil
+    configurarMenuHamburguesa();
+    console.log('✅ Menú móvil configurado');
     
     // Inicializar scroll suave
     inicializarScrollSuave();
@@ -382,7 +449,16 @@ function inicializarSitio() {
     // Inicializar modo oscuro
     inicializarModoOscuro();
     console.log('✅ Modo oscuro configurado');
-    
+
+    // Resaltar enlace activo y encoger header al hacer scroll
+    marcarEnlaceActivo();
+    inicializarHeaderScroll();
+    console.log('✅ Enlaces activos y scroll del header configurados');
+
+    // buscador de base de conocimientos (si aplica)
+    inicializarBuscadorBase();
+    console.log('✅ Buscador de base configurado');
+
     console.log('🎉 Todas las funcionalidades han sido inicializadas correctamente');
 }
 
@@ -402,9 +478,7 @@ function inicializarSitio() {
  */
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Sitio inicializado');
-    inicializarNavegacionMovil();
-    configurarMenuHamburguesa(); // inicializar menú hamburguesa (móvil)
-    inicializarValidacionBasica();
+    inicializarSitio();
 });
 
 // Hook por defecto cuando un formulario se envía correctamente
@@ -429,6 +503,36 @@ window.onFormError = function(formulario, error) {
 // ============================================
 // FUNCIONES DE UTILIDAD GLOBAL
 // ============================================
+
+/**
+ * Marca el enlace de navegación que coincide con la página actual.
+ * Añade la clase `active` al <a> correspondiente para resaltar la pestaña.
+ */
+function marcarEnlaceActivo() {
+    const enlaces = document.querySelectorAll('.nav__link');
+    const nombre = location.pathname.split('/').pop() || 'index.html';
+    enlaces.forEach(a => {
+        if (a.getAttribute('href') === nombre) {
+            a.classList.add('active');
+        }
+    });
+}
+
+/**
+ * Reduce el header al hacer scroll hacia abajo y lo restaura al subir.
+ * Añade clase `header--scrolled` al <header> cuando scrollY>50.
+ */
+function inicializarHeaderScroll() {
+    const header = document.querySelector('header');
+    if (!header) return;
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            header.classList.add('header--scrolled');
+        } else {
+            header.classList.remove('header--scrolled');
+        }
+    });
+}
 
 /**
  * Función para mostrar notificaciones toast
@@ -524,9 +628,18 @@ function configurarMenuHamburguesa() {
 
     // Alterna la visibilidad del menú y actualiza atributos ARIA
     boton.addEventListener('click', () => {
+        console.log('hamburger clicked, menu element:', menu);
+        // ajustar posición superior basada en el header actual
+        const header = document.querySelector('header');
+        if (header) {
+            menu.style.top = `${header.offsetHeight}px`;
+        }
+
         const abierto = menu.classList.toggle('nav__lista--activo');
         boton.classList.toggle('nav__boton--activo');
         boton.setAttribute('aria-expanded', abierto ? 'true' : 'false');
+        // bloquear scroll del body mientras el menú está abierto
+        document.body.style.overflow = abierto ? 'hidden' : '';
 
         // Cambiar icono (FontAwesome) para indicar estado
         const icono = boton.querySelector('i');

@@ -6,7 +6,7 @@
 
     <!-- =============================== -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Base de Conocimientos de ACE Ingeniería & Conectividad - Manuales, guías y soluciones técnicas">
     <title>Base de Conocimientos - ACE Ingeniería & Conectividad</title>
 
@@ -63,7 +63,9 @@
                 <div class="busqueda__input">
                     <i class="fas fa-search"></i>
                     <input type="text" placeholder="Buscar en la base de conocimientos..." id="busqueda-input">
+                    <i class="fas fa-times" id="busqueda-clear" aria-label="Limpiar búsqueda" role="button" style="display:none;"></i>
                 </div>
+                <p id="busqueda-mensaje" class="busqueda__mensaje" style="display:none;">No se encontraron resultados</p>
             </div>
 
             <!-- Categorías principales -->
@@ -279,7 +281,7 @@
                 <h2>¿No encontraste lo que buscabas?</h2>
                 <p>Nuestro equipo técnico está disponible para ayudarte con consultas específicas</p>
                 <div class="cta__botones">
-                    <a href="contacto.html" class="btn">Contactar Soporte</a>
+                    <a href="contacto.html" class="btn btn--pulse">Contactar Soporte</a>
                     <a href="soporte.html" class="btn btn--outline">Ver Más Opciones</a>
                 </div>
             </div>
@@ -290,13 +292,8 @@
     <footer class="footer">
         <div class="contenedor footer__contenido">
             <p>&copy; 2025 ACE Ingeniería & Conectividad</p>
-            <div class="redes">
-                <!-- Enlaces de ejemplo; reemplazar por los reales -->
-                <a class="redes__link" href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                <a class="redes__link" href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            </div>
+            <small class="footer__legal">Este sitio es un trabajo práctico de Augusto Acosta.</small>
         </div>
-        <small class="footer__legal">Este sitio es un trabajo práctico de Augusto Acosta.</small>
     </footer>
 
     <!-- Conexión con el JavaScript -->
