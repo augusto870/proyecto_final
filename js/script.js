@@ -486,18 +486,54 @@ window.onFormError = function(formulario, error) {
  */
 function marcarEnlaceActivo() {
     const enlaces = document.querySelectorAll('.nav__link');
-    const nombre = location.pathname.split('/').pop() || 'index.html';
+
+    // calcular nombre de página actual de forma robusta
+    const path = location.pathname;
+    const partes = path.split('/');
+    let ultimo = partes.pop();
+    if (!ultimo) { // ruta terminaba en slash
+        ultimo = partes.pop() || '';
+    }
+    let nombre = (ultimo || 'index.html');
+    nombre = nombre.split('?')[0].split('#')[0];
+
+    // también extraer sólo el nombre sin extensión para comparación secundaria
+    const nombreBase = nombre.split('.')[0];
+    console.log('marcarEnlaceActivo -> nombre:', nombre, 'nombreBase:', nombreBase);
+
     enlaces.forEach(a => {
-        // ignorar enlaces con hash, serán manejados por el spy
         const href = a.getAttribute('href');
         if (!href) return;
-        const sinHash = href.split('#')[0];
-        if (sinHash === nombre) {
+        let sinHash = href.split('#')[0].split('?')[0];
+        let enlaceBase = sinHash.split('/').pop().split('.')[0];
+
+        // marcar activo si coinciden página o base (sin extensión)
+        if (sinHash === nombre || enlaceBase === nombreBase) {
             a.classList.add('active');
         } else {
             a.classList.remove('active');
         }
     });
+
+    actualizarIndicadorHeader();
+}
+
+/**
+ * Inserta/modifica un pequeño texto en el header con el nombre del enlace activo.
+ * Esto asegura que incluso con el menú cerrado (móvil) se note en qué página
+ * o sección nos encontramos.
+ */
+function actualizarIndicadorHeader() {
+    const header = document.querySelector('.header');
+    if (!header) return;
+    let indicador = header.querySelector('.header__activo');
+    if (!indicador) {
+        indicador = document.createElement('span');
+        indicador.className = 'header__activo';
+        header.appendChild(indicador);
+    }
+    const enlace = document.querySelector('.nav__link.active');
+    indicador.textContent = enlace ? enlace.textContent : '';
 }
 
 /**
@@ -517,14 +553,13 @@ function inicializarSpySecciones() {
                 if (enlace) {
                     document.querySelectorAll('.nav__link').forEach(l => l.classList.remove('active'));
                     enlace.classList.add('active');
+                    actualizarIndicadorHeader();
                 }
             }
         });
     }, {
         rootMargin: '0px 0px -50% 0px'
     });
-
-    secciones.forEach(sec => observer.observe(sec));
 }
 
 /**
@@ -661,7 +696,12 @@ function configurarMenuHamburguesa() {
 
     // Cerrar el menú si se hace click en un enlace del menú
     menu.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', () => {
+        a.addEventListener('click', (e) => {
+            // marcar como activo para dar feedback inmediato
+            document.querySelectorAll('.nav__link').forEach(l => l.classList.remove('active'));
+            a.classList.add('active');
+            actualizarIndicadorHeader();
+
             menu.classList.remove('nav__lista--activo');
             boton.classList.remove('nav__boton--activo');
             boton.setAttribute('aria-expanded', 'false');
