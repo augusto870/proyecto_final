@@ -198,6 +198,7 @@
                             name="nombre" 
                             class="formulario__input" 
                             placeholder="Tu nombre completo"
+                            autocomplete="name"
                             required <!-- Campo obligatorio -->
                             maxlength="100" <!-- Límite de caracteres -->
                         >
@@ -217,6 +218,7 @@
                             name="email" 
                             class="formulario__input" 
                             placeholder="tu@email.com"
+                            autocomplete="email"
                             required
                         >
                         <span class="formulario__error" id="error-email"></span>
@@ -237,6 +239,7 @@
                             name="telefono" 
                             class="formulario__input" 
                             placeholder="+54 11 1234-5678"
+                            autocomplete="tel"
                             required
                             pattern="[\d\s\-\(\)\+]+" <!-- Patrón para validar formato de teléfono -->
                         >
@@ -401,39 +404,9 @@
 
     <!-- Conexión con el JavaScript -->
     <!-- Script principal del sitio -->
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=3"></script>
     <!-- Script para manejo de formularios -->
     <script src="js/formularios.js"></script>
-    <!-- Script defensivo: asegura que el botón hamburguesa funcione
-         incluso si el archivo principal tiene errores. Añadido para
-         robustez durante pruebas en dispositivos móviles. -->
-    <script>
-        (function(){
-            try {
-                const boton = document.querySelector('.nav__boton-movil');
-                const menu = document.querySelector('#navLista');
-                if (!boton || !menu) return;
 
-                // Evitar añadir múltiples listeners si ya existen
-                if (!boton.dataset.hamburguesaInit) {
-                    boton.addEventListener('click', () => {
-                        const header = document.querySelector('header');
-                        if (header) {
-                            menu.style.top = `${header.offsetHeight}px`;
-                        }
-                        const abierto = menu.classList.toggle('nav__lista--activo');
-                        boton.setAttribute('aria-expanded', abierto ? 'true' : 'false');
-                        const icono = boton.querySelector('i');
-                        if (icono) icono.className = abierto ? 'fas fa-times' : 'fas fa-bars';
-                        document.body.style.overflow = abierto ? 'hidden' : '';
-                    });
-                    boton.dataset.hamburguesaInit = 'true';
-                }
-            } catch (e) {
-                // Si algo falla, no rompemos el resto del sitio
-                console.warn('Error init hamburguesa (defensivo):', e);
-            }
-        })();
-    </script>
 </body>
 </html>

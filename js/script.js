@@ -659,6 +659,11 @@ window.esDispositivoMovil = esDispositivoMovil;
 
 /* ==================================================
    Menu Hamburguesa (nuevo)
+*/
+// aseguramos que no haya overflow residual en body
+document.body.style.overflow = '';
+
+/* ==================================================
    - Esta función agrega la lógica para abrir/cerrar
      el menú de navegación en dispositivos móviles.
    - No modifica el DOM más allá de alternar clases
@@ -668,48 +673,103 @@ window.esDispositivoMovil = esDispositivoMovil;
 function configurarMenuHamburguesa() {
     const boton = document.querySelector('.nav__boton-movil');
     const menu = document.querySelector('#navLista');
-    if (!boton || !menu) return; // no hacer nada si no existen
+    const header = document.querySelector('header');
 
-    // evitar inicializar más de una vez (y avisar al script defensivo)
-    if (boton.dataset.hamburguesaInit) return;
+    if (!boton || !menu) return;
 
-    // Alterna la visibilidad del menú y actualiza atributos ARIA
-    boton.addEventListener('click', () => {
-        // ajustar posición superior basada en el header actual
-        const header = document.querySelector('header');
+    // limpiar cualquier estilo inline que haya quedado en el markup
+    menu.style.overflow = '';
+    menu.style.overflowY = '';
+    menu.style.maxHeight = '';
+
+    // función que cierra el menú
+    function cerrarMenu() {
+        menu.classList.remove('nav__lista--activo');
+        menu.classList.remove('menu-hamburguesa');
+        // retirar cualquier inline overflow leftover
+        menu.style.overflow = '';
+        menu.style.overflowY = '';
+        menu.style.maxHeight = '';
+        boton.classList.remove('nav__boton--activo');
+        boton.setAttribute('aria-expanded', 'false');
+        // restore page scrolling
+        document.documentElement.classList.remove('menu-abierto');
+        document.body.classList.remove('menu-abierto');
+
+        const icono = boton.querySelector('i');
+        if (icono) icono.className = 'fas fa-bars';
+    }
+
+    function abrirMenu() {
         if (header) {
             menu.style.top = `${header.offsetHeight}px`;
         }
 
-        const abierto = menu.classList.toggle('nav__lista--activo');
-        boton.classList.toggle('nav__boton--activo');
-        boton.setAttribute('aria-expanded', abierto ? 'true' : 'false');
-        // bloquear scroll del body mientras el menú está abierto
-        document.body.style.overflow = abierto ? 'hidden' : '';
+        menu.classList.add('nav__lista--activo');
+        menu.classList.add('menu-hamburguesa');
+        // CSS toma responsabilidad del overflow interno
+        boton.classList.add('nav__boton--activo');
+        boton.setAttribute('aria-expanded', 'true');
 
-        // Cambiar icono (FontAwesome) para indicar estado
+        // no bloqueamos el scroll del contenido, solo cerramos el menú cuando se detecta un intento de scroll
+        document.documentElement.classList.add('menu-abierto');
+        document.body.classList.add('menu-abierto');
+
+
         const icono = boton.querySelector('i');
-        if (icono) {
-            icono.className = abierto ? 'fas fa-times' : 'fas fa-bars';
+        if (icono) icono.className = 'fas fa-times';
+    }
+
+    boton.addEventListener('click', () => {
+        const abierto = menu.classList.contains('nav__lista--activo');
+
+        if (abierto) {
+            cerrarMenu();
+        } else {
+            abrirMenu();
         }
     });
 
-    // Cerrar el menú si se hace click en un enlace del menú
+    // cerrar al hacer click en link
     menu.querySelectorAll('a').forEach(a => {
-        a.addEventListener('click', (e) => {
-            // marcar como activo para dar feedback inmediato
-            document.querySelectorAll('.nav__link').forEach(l => l.classList.remove('active'));
-            a.classList.add('active');
-            actualizarIndicadorHeader();
-
-            menu.classList.remove('nav__lista--activo');
-            boton.classList.remove('nav__boton--activo');
-            boton.setAttribute('aria-expanded', 'false');
-            const icono = boton.querySelector('i');
-            if (icono) icono.className = 'fas fa-bars';
-        });
+        a.addEventListener('click', cerrarMenu);
     });
 
-    // marcar como inicializado, para que el fallback no se active también
+
+    // cerrar al usar la rueda del ratón, trackpad o gestos táctiles
+    ['wheel','mousewheel','touchmove'].forEach(evt => {
+        document.addEventListener(evt, (e) => {
+            if (menu.classList.contains('nav__lista--activo')) {
+                e.preventDefault();  // evitar que el page scroll se propague
+                console.log('evento', evt, 'capturado, evitando scroll y cerrando menú');
+                cerrarMenu();
+            }
+        }, { passive: false, capture: true });
+    });
+
+    // cerrar al hacer click fuera
+    document.addEventListener('click', (e) => {
+        if (!menu.contains(e.target) && !boton.contains(e.target)) {
+            cerrarMenu();
+        }
+    });
+
+    // cerrar al cambiar tamaño de pantalla
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 768) {
+            cerrarMenu();
+        }
+    });
+
+    // evitar scroll con teclado (flechas, espacio, PgUp/PgDn)
+    document.addEventListener('keydown', e => {
+        const keys = ['ArrowUp','ArrowDown','PageUp','PageDown',' '];
+        if (menu.classList.contains('nav__lista--activo') && keys.includes(e.key)) {
+            e.preventDefault();
+            cerrarMenu();
+        }
+    });
+
+    // marcar que ya inicializamos para evitar duplicados
     boton.dataset.hamburguesaInit = 'true';
 }

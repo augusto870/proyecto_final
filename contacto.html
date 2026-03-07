@@ -116,17 +116,17 @@
                         <!-- name y required ayudan a la validación y al backend -->
                         <label class="form__label">
                             <span>Nombre *</span>
-                            <input class="form__input" type="text" name="nombre" placeholder="Tu nombre completo" required>
+                            <input class="form__input" type="text" name="nombre" placeholder="Tu nombre completo" autocomplete="name" required>
                         </label>
 
                         <label class="form__label">
                             <span>Email *</span>
-                            <input class="form__input" type="email" name="email" placeholder="tu@correo.com" required>
+                            <input class="form__input" type="email" name="email" placeholder="tu@correo.com" autocomplete="email" required>
                         </label>
 
                         <label class="form__label">
                             <span>Teléfono</span>
-                            <input class="form__input" type="tel" name="telefono" placeholder="+54 11 1234-5678">
+                            <input class="form__input" type="tel" name="telefono" placeholder="+54 11 1234-5678" autocomplete="tel">
                         </label>
 
                         <label class="form__label">
@@ -165,31 +165,8 @@
     </footer>
 
     <!-- Conexión con el JavaScript -->
-    <script src="js/script.js"></script>
-    <!-- Script defensivo para el menú hamburguesa (asegura toggle aunque script principal falle) -->
-    <script>
-        (function(){
-            try {
-                const boton = document.querySelector('.nav__boton-movil');
-                const menu = document.querySelector('#navLista');
-                if (!boton || !menu) return;
-                if (!boton.dataset.hamburguesaInit) {
-                    boton.addEventListener('click', () => {
-                        const header = document.querySelector('header');
-                        if (header) {
-                            menu.style.top = `${header.offsetHeight}px`;
-                        }
-                        const abierto = menu.classList.toggle('nav__lista--activo');
-                        boton.setAttribute('aria-expanded', abierto ? 'true' : 'false');
-                        const icono = boton.querySelector('i');
-                        if (icono) icono.className = abierto ? 'fas fa-times' : 'fas fa-bars';
-                        document.body.style.overflow = abierto ? 'hidden' : '';
-                    });
-                    boton.dataset.hamburguesaInit = 'true';
-                }
-            } catch (e) { console.warn('hamburguesa init error', e); }
-        })();
-    </script>
+    <script src="js/script.js?v=3"></script>
+
 
 <div id="formMsg" style="display:none; margin-top:15px; color:green; font-weight:bold;">
 Mensaje enviado correctamente ✔️

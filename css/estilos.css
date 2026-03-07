@@ -47,6 +47,11 @@ body {
    - Menú principal responsive
 ================================= */
 .header {
+    
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
     background: #0b3a70; /* azul institucional */
     color: #fff;
     position: sticky; /* queda fijo arriba al hacer scroll */
@@ -134,7 +139,8 @@ body {
 
 /* indicador textual de sección/página activo visible junto al logo */
 .header__activo {
-    display: inline-block;
+    /* hidden by default, the background highlight is enough */
+    display: none;
     margin-left: 0.75rem;
     padding: 2px 6px;
     background: #ffffff;
@@ -154,14 +160,28 @@ body {
 /* fondo de navegación igual al header para mantener legibilidad */
 .nav {
     background: var(--color-primario);
+    overflow: hidden; /* evitar cualquier scrollbar residual */
+}
+header {
+    overflow: hidden; /* asegurarnos que no cree scroll interno */
 }
 
+/* navegación principal: por defecto se muestra en escritorio y se oculta en móvil */
 .nav__lista {
-    list-style: none;
-    display: flex;
-    gap: 15px;
-    margin: 0;
+    list-style: none;        /* quitar viñetas predeterminadas */
+    display: flex;           /* visible horizontalmente en escritorio */
+    flex-direction: row;
+    flex-wrap: wrap;         /* permitir que los enlaces saltan de línea */
+    gap: 1rem;               /* espacio entre enlaces */
+    width: auto;
     padding: 0;
+    margin: 0;
+    overflow-x: hidden;      /* ocultar barra de scroll horizontal */
+
+    position: static;        /* no flota sobre el contenido */
+    background: transparent;
+    box-shadow: none;
+    z-index: auto;
 }
 .nav__link {
     color: #fff;
@@ -176,6 +196,50 @@ body {
 /* Botón hamburguesa: oculto por defecto en escritorio */
 .nav__boton-movil {
     display: none;
+}
+
+/* reglas para pantalla pequeña: convertir el listado en panel oculto */
+@media (max-width: 768px) {
+    .nav__lista {
+        display: none; /* se muestra sólo cuando tiene --activo */
+        flex-direction: column;
+        gap: 0;
+        width: 100%;
+        padding: 8px 0;
+        margin: 0;
+
+        position: fixed; /* panel fijo sobre el contenido */
+        top: 0;
+        left: 0;
+        right: 0;
+        background: #0b3a70;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        z-index: 999;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+    .nav__lista--activo {
+        background: #1461a1;
+        display: flex;
+        overflow-y: hidden; /* evitar scroll vertical (scrollable cerrado) */
+    }
+    .nav__boton-movil {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        color: #ffffff;
+        font-size: 1.25rem;
+        padding: 6px 8px;
+        border-radius: 6px;
+        z-index: 1000;
+        cursor: pointer;
+        position: absolute;
+        left: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 40;
+    }
 }
 
 /* ==============================
@@ -1372,13 +1436,30 @@ h1, .nosotros__titulo {
         box-shadow: 0 6px 18px rgba(0,0,0,0.12);
         border-radius: 0; /* quita bordes para cubrir todo */
         z-index: 999; /* aseguramos que quede encima de todo */
-        max-height: 100vh; /* evitar que pase de la pantalla */
-        overflow-y: auto;   /* scroll interno si hay muchos enlaces */
     }
 
     /* make active menu easier to see during debugging */
     .nav__lista--activo {
         background: #1461a1; /* un tono un poco más claro */
+    }
+
+
+/* la lista de navegación nunca debe mostrar scroll, independientemente del estado */
+.nav__lista,
+.nav__lista--activo {
+    overflow: hidden !important;
+    max-height: none !important;
+}
+
+    /* ocultar scrollbar en la propia lista */
+    .nav__lista::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        background: transparent;
+    }
+    .nav__lista {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 
     .nav__lista--activo {
@@ -1480,6 +1561,34 @@ h1, .nosotros__titulo {
 
     /* Evitar scroll horizontal accidental */
     html, body { overflow-x: hidden; }
+
+
+    /* clase utilitaria para menú hamburguesa fijo */
+    .menu-hamburguesa {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important; /* opcional, para ocupar todo el ancho */
+        z-index: 999 !important; /* encima de casi todo */
+    }
+
+    /* esconder scrollbar de página mientras el menú está desplegado */
+    html.menu-abierto,
+    body.menu-abierto {
+        overflow-y: hidden !important;
+    }
+
+    /* ocultar la barra de scroll por completo cuando el menú esté abierto */
+    html.menu-abierto::-webkit-scrollbar,
+    body.menu-abierto::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+        background: transparent;
+    }
+    html.menu-abierto {
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE 10+ */
+    }
 
     /* ======================================================
        Ocultar texto del hero SOLO en la página principal (móvil)
