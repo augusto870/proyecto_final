@@ -95,35 +95,9 @@ function inicializarAnimacionesScroll() {
 // ============================================
 
 /**
- * Función para validación básica del lado cliente
- * Esta es una validación simple, la principal está en formularios.js
- * 
- * FUNCIONALIDADES:
- * - Validación básica de campos requeridos
- * - Mensajes de error simples
- * - No reemplaza la validación del servidor
+ * Inicializa la validación básica de todos los formularios
+ * (se define más abajo para evitar duplicación accidental)
  */
-function inicializarValidacionBasica() {
-    const formularios = document.querySelectorAll('form');
-    
-    formularios.forEach(formulario => {
-        // Prevenir envío si hay errores
-        formulario.addEventListener('submit', (e) => {
-            if (!validarFormularioBasico(formulario)) {
-                e.preventDefault();
-                alert('Por favor completa todos los campos requeridos');
-            }
-        });
-
-        // Validar campos cuando pierden foco
-        const campos = formulario.querySelectorAll('input, textarea, select');
-        campos.forEach(campo => {
-            campo.addEventListener('blur', () => {
-                validarCampo(campo);
-            });
-        });
-    });
-}
 
 /**
  * Inicializa la validación básica de todos los formularios
@@ -146,7 +120,7 @@ function inicializarValidacionBasica() {
             });
         });
     });
-} // Faltaba esta llave de cierre
+}
 
 /**
  * Validación básica de formularios
@@ -626,9 +600,11 @@ function configurarMenuHamburguesa() {
     const menu = document.querySelector('#navLista');
     if (!boton || !menu) return; // no hacer nada si no existen
 
+    // evitar inicializar más de una vez (y avisar al script defensivo)
+    if (boton.dataset.hamburguesaInit) return;
+
     // Alterna la visibilidad del menú y actualiza atributos ARIA
     boton.addEventListener('click', () => {
-        console.log('hamburger clicked, menu element:', menu);
         // ajustar posición superior basada en el header actual
         const header = document.querySelector('header');
         if (header) {
@@ -658,4 +634,7 @@ function configurarMenuHamburguesa() {
             if (icono) icono.className = 'fas fa-bars';
         });
     });
+
+    // marcar como inicializado, para que el fallback no se active también
+    boton.dataset.hamburguesaInit = 'true';
 }
