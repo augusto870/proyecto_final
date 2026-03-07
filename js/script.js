@@ -426,8 +426,10 @@ function inicializarSitio() {
 
     // Resaltar enlace activo y encoger header al hacer scroll
     marcarEnlaceActivo();
+    // detectar secciones internas para marcar navegación (scroll spy)
+    inicializarSpySecciones();
     inicializarHeaderScroll();
-    console.log('✅ Enlaces activos y scroll del header configurados');
+    console.log('✅ Enlaces activos, spy de secciones y scroll del header configurados');
 
     // buscador de base de conocimientos (si aplica)
     inicializarBuscadorBase();
@@ -486,10 +488,43 @@ function marcarEnlaceActivo() {
     const enlaces = document.querySelectorAll('.nav__link');
     const nombre = location.pathname.split('/').pop() || 'index.html';
     enlaces.forEach(a => {
-        if (a.getAttribute('href') === nombre) {
+        // ignorar enlaces con hash, serán manejados por el spy
+        const href = a.getAttribute('href');
+        if (!href) return;
+        const sinHash = href.split('#')[0];
+        if (sinHash === nombre) {
             a.classList.add('active');
+        } else {
+            a.classList.remove('active');
         }
     });
+}
+
+/**
+ * Scroll spy: observa secciones que tienen un id y activa el correspondiente
+ * enlace del menú cuyo href termina en "#id". Esto permite que al desplazarse
+ * por la página el item del menú se marque claramente.
+ */
+function inicializarSpySecciones() {
+    const secciones = document.querySelectorAll('section[id]');
+    if (!secciones.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const id = entry.target.getAttribute('id');
+                const enlace = document.querySelector(`.nav__link[href$="#${id}"]`);
+                if (enlace) {
+                    document.querySelectorAll('.nav__link').forEach(l => l.classList.remove('active'));
+                    enlace.classList.add('active');
+                }
+            }
+        });
+    }, {
+        rootMargin: '0px 0px -50% 0px'
+    });
+
+    secciones.forEach(sec => observer.observe(sec));
 }
 
 /**

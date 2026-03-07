@@ -1997,12 +1997,16 @@ h1, .nosotros__titulo {
 
 /* Navegación: destacar página actual e interacción */
 .nav__link {
-    transition: background 0.2s;
+    transition: background 0.2s, color 0.2s;
 }
 .nav__link:hover,
-.nav__link:focus,
-.nav__link.active {
+.nav__link:focus {
     background: rgba(255,255,255,0.2);
+}
+.nav__link.active {
+    /* fondo blanco para el enlace activo y texto en color primario */
+    background: #ffffff;
+    color: var(--color-primario);
 }
 
 /* Espaciado y énfasis de encabezados */
